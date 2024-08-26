@@ -1,0 +1,22 @@
+sequenceDiagram
+    actor User
+    participant Browser
+    participant App
+    participant Storage
+    User->>Browser: Visit project creation page
+    activate Browser
+    Browser->>App: GET /createproject
+    activate App
+    App->>Browser: 200 OK, /createproject
+    deactivate App
+    User->>Browser: Input project details
+    Browser->>App: POST /api/projects/create
+    activate App
+    App->>Storage: Write project details to projects.json
+    activate Storage
+    Storage->>App: Successfully written
+    deactivate Storage
+    App->>Browser: 201 Created
+    deactivate App
+    Browser->>User: Message: Project created successfully
+    deactivate Browser
