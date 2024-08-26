@@ -1,0 +1,23 @@
+sequenceDiagram
+    actor User
+    participant Browser
+    participant App
+    participant Storage
+    User->>Browser: Visit projects page
+    activate Browser
+    Browser->>App: GET /projects
+    activate App
+    App->>Browser: 200 OK, /projects
+    deactivate App
+    Browser->>App: GET /api/projects/get
+    activate App
+    App->>Storage: Read projects.json
+    activate Storage
+    Storage->>App: Return file contents
+    deactivate Storage
+    App->>Browser: 200 OK, send projects data as JSON
+    deactivate App
+    Browser->>Browser: Parse JSON response
+    Browser->>Browser: Create tile for each project
+    Browser->>User: Show projects page
+    deactivate Browser
