@@ -14,6 +14,9 @@ app.get("/api/projects", async (ctx) => {
 	const jsonData = await readFile("projects.json", "utf-8");
 	return ctx.json(JSON.parse(await jsonData));
 });
+app.put("/api/projects", async (ctx) => {
+	//TODO: Create HTML form for creating projects to match
+});
 console.log(`Starting backend server on port ${config.port}`);
 serve({
 	fetch: app.fetch,
