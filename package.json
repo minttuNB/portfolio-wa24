@@ -11,12 +11,12 @@
 		"dev": "concurrently -n frontend,backend -c green,blue \"npm run dev:frontend\" \"npm run dev:server\""
 	},
 	"devDependencies": {
-		"@types/node": "^22.5.0",
 		"concurrently": "8.2.2",
 		"vite": "^5.4.1",
 		"eslint": "^9.9.1"
 	},
 	"dependencies": {
+		"@types/node": "^22.5.0",
 		"@hono/node-server": "^1.12.2",
 		"hono": "^4.5.9",
 		"zod": "^3.23.8",
