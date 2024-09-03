@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 				"Content-Type": "application/json",
 			},
 			method: "PUT",
+			mode: "cors",
 			body: JSON.stringify(
 				Object.fromEntries(new FormData(formDiv).entries())
 			),
@@ -18,7 +19,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 		submitButton.disabled = true;
 		const mainElement: HTMLElement =
 			document.querySelector<HTMLElement>("main")!;
-		if ((await data).status === 201) {
+		const response = await data;
+		const jsonResponse = await response.json()
+		if (response.status === 201) {
 			mainElement.innerHTML =
 				"<h1>Success!</h1><p>You will be redirected to the projects page shortly.</p>";
 			window.location.replace(`${window.location.origin}`);
@@ -28,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 				.classList.add("error-message");
 			document.querySelector<HTMLParagraphElement>(
 				"#response-message"
-			)!.innerHTML = "An error has occurred";
+			)!.innerHTML = `An error has occurred: ${jsonResponse.message}`;
 			submitButton.disabled = false;
 		}
 	});
