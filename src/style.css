@@ -13,7 +13,9 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
+*{
+	box-sizing: border-box;
+}
 a {
 	font-weight: 500;
 	color: var(--accent-color);
@@ -95,7 +97,41 @@ button:focus,
 button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
 }
-
+form{
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+form > h1{
+	margin: 0;
+}
+input[type=submit]{
+	text-align: center;
+	margin: auto;
+	border-radius: 0.5rem;
+	padding: 1rem;
+}
+label{
+	display: block;
+}
+input{
+	border-radius: 0.5rem;
+	padding: 1rem;
+	width: 100%;
+}
+#response-message{
+	visibility: hidden;
+	display: none;
+}
+.error-message{
+	background: rgb(255, 48, 48);
+	color: white;
+	visibility: visible !important;
+	display: block !important;
+	padding: 1rem;
+	border-radius: 0.5rem;
+}
 @media (prefers-color-scheme: light) {
 	:root {
 		color: #213547;
