@@ -7,9 +7,6 @@ import { readFile } from "node:fs/promises";
 const app = new Hono();
 app.use("/*", cors());
 app.use("/static/*", serveStatic({ root: "./" }));
-app.get("/json", async (ctx) => {
-	return ctx.json({});
-});
 app.get("/api/projects", async (ctx) => {
 	const jsonData = await readFile("projects.json", "utf-8");
 	return ctx.json(JSON.parse(await jsonData));
