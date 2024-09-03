@@ -28,7 +28,7 @@ a:hover {
 body {
 	margin: 0;
 	display: grid;
-	grid-template-rows: 1fr 5fr 1fr;
+	grid-template-rows: 1fr auto 1fr;
 	min-width: 320px;
 	min-height: 100vh;
 	color: var(--text-color);
@@ -68,9 +68,16 @@ nav menu{
 	align-items: center;
 	gap: 2rem;
 }
+#projects{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: center;
+}
 #projects > article{
 	background-color: var(--accent-color);
 	border-radius: 1rem;
+	width: 100%;
 	padding: 4rem;
 }
 footer{
@@ -142,5 +149,10 @@ input{
 	}
 	button {
 		background-color: #f9f9f9;
+	}
+}
+@media only screen and (min-width: 768px) {
+	#projects > article{
+		width: max(20rem, 20vw);
 	}
 }
