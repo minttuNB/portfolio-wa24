@@ -19,5 +19,14 @@
     "images": [
       "https://upload.wikimedia.org/wikipedia/en/7/7a/Bongo_cat.png"
     ]
+  },
+  {
+    "id": "543dcd97-45a9-4a51-a28b-81d0c0e5fe39",
+    "name": "Tourtle",
+    "description": "A project created for the subject Software Engineering and Testing during my time at HiØ. A webapp prototype made to connect local private and organized tourism activities providers with interested tourists. Written in Java with Javalin.",
+    "date": "2023-11-27T00:00:00.000Z",
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Emoji_u1f422.svg/1200px-Emoji_u1f422.svg.png"
+    ]
   }
 ]
