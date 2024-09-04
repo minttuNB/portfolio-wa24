@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async () => {
+export const formHandler = async () => {
 	const formDiv: HTMLFormElement =
 		document.querySelector<HTMLFormElement>("form")!;
 	formDiv.addEventListener("submit", async (e: SubmitEvent) => {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 		const mainElement: HTMLElement =
 			document.querySelector<HTMLElement>("main")!;
 		const response = await data;
-		const jsonResponse = await response.json()
+		const jsonResponse = await response.json();
 		if (response.status === 201) {
 			mainElement.innerHTML =
 				"<h1>Success!</h1><p>You will be redirected to the projects page shortly.</p>";
@@ -34,4 +34,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 			submitButton.disabled = false;
 		}
 	});
-});
+};
