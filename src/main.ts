@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 		document.querySelector<HTMLElement>("main")!.innerHTML = `<form>
 				<h1>Add a project</h1>
 				<p id="response-message"></p>
-				<label for="name">Project name</label>
+				<label for="name">Project name (required)</label>
 				<input type="text" name="name" id="name" placeholder="My fantastic project" required>
 				<label for="description">Project description</label><input type="text" name="description" id="description" placeholder="A project solving all the problems in the world, and...">
 				<label for="date">Project date</label><input type="date" name="date" id="date">
-				<label for="url">Project URL (optional)</label><input type="url" name="url" id="url" placeholder="https://episkklutprosjekt.no">
+				<label for="url">Project URL</label><input type="url" name="url" id="url" placeholder="https://episkklutprosjekt.no">
 				<label for="image-url">Image URL</label><input type="url" name="image-url" id="image-url">
 				<input type="submit" value="Add project">
 			</form>`;
