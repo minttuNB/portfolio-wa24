@@ -1,4 +1,3 @@
-import "./style.css";
 document.addEventListener("DOMContentLoaded", async () => {
 	const formDiv: HTMLFormElement =
 		document.querySelector<HTMLFormElement>("form")!;
