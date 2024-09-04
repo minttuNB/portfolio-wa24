@@ -26,8 +26,8 @@ const loadProjects = async () => {
 		"http://localhost:8080/api/projects"
 	).then((r) => r.json());
 	(await data).forEach((element: ProjectObject) => {
-		projectDiv.innerHTML += `<article><h2>${element.name}</h2>${
+		projectDiv.innerHTML += `<article><img src="${element.images ? element.images[0] : "https://via.placeholder.com/300"}" alt="${element.name}"><section><h2>${element.name}</h2>${
 			element.description || "<i>No description provided</i>"
-		}</article>`;
+		}</section></article>`;
 	});
 };
