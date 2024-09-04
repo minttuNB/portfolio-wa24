@@ -39,7 +39,7 @@ app.put("/api/projects", async (ctx) => {
 		} catch (error) {
 			return ctx.json({ message: "The project URL is invalid" }, 400);
 		}
-		projectObject.url = new URL(url);
+		projectObject.url = url;
 	}
 	if (data["image-url"].length !== 0) {
 		let url: URL;
