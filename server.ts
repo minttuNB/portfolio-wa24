@@ -19,17 +19,17 @@ app.put("/api/projects", async (ctx) => {
 	//Validate fields and build object
 	if (data.name.length === 0) {
 		return ctx.json({ message: "The project name cannot be empty" }, 400);
-	}
-	else{
-		projectObject  = {
+	} else {
+		projectObject = {
 			id: crypto.randomUUID(),
-			name: data.name
+			name: data.name,
 		};
 	}
+	if (data.description.length > 0)
+		projectObject.description = data.description;
 	if (data.date.length !== 0 && typeof new Date(data.date) === null) {
 		return ctx.json({ message: "The date is invalid" }, 400);
-	}
-	else{
+	} else {
 		projectObject.date = new Date(data.date);
 	}
 	if (data.url.length !== 0) {
@@ -39,7 +39,7 @@ app.put("/api/projects", async (ctx) => {
 		} catch (error) {
 			return ctx.json({ message: "The project URL is invalid" }, 400);
 		}
-		projectObject.url = new URL(url)
+		projectObject.url = new URL(url);
 	}
 	if (data["image-url"].length !== 0) {
 		let url: URL;
@@ -48,13 +48,23 @@ app.put("/api/projects", async (ctx) => {
 		} catch (error) {
 			return ctx.json({ message: "The image URL is invalid" }, 400);
 		}
-		projectObject.images = [ url ];
+		projectObject.images = [url];
 	}
 	//Update file with new project (TODO: factor out into storage handling functions)
-	let jsonData: ProjectObject[] = JSON.parse(await readFile("projects.json", "utf-8"));
+	let jsonData: ProjectObject[] = JSON.parse(
+		await readFile("projects.json", "utf-8")
+	);
 	jsonData.push(projectObject);
-	writeFile("projects.json", JSON.stringify(jsonData), { encoding: "utf-8"});
-	return ctx.json({ message: "Project successfully created", "resource-id": projectObject.id }, 201);
+	writeFile("projects.json", JSON.stringify(jsonData, null, 2), {
+		encoding: "utf-8",
+	});
+	return ctx.json(
+		{
+			message: "Project successfully created",
+			"resource-id": projectObject.id,
+		},
+		201
+	);
 });
 console.log(`Starting backend server on port ${config.port}`);
 serve({
