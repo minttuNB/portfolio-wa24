@@ -12,6 +12,7 @@ export default function Projects(props: ProjectsProps) {
 					date={project.date}
 					url={project.url}
 					images={project.images}
+					key={project.id}
 				/>
 			))}
 		</section>
