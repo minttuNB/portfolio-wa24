@@ -10,8 +10,8 @@ const projects: ProjectProps[] = [
 	  date: new Date("Year or a more definite date of project work/completion"),
 	  url: new URL("https://example.project.party/fantastic"),
 	  images: [
-		new URL("path_to_image_1_can_be_used_as_splash.png"),
-		new URL("path_to_eventual_image_2_3_4_if_we_want_a_full_project_page.jpg")
+		new URL("http://localhost/path_to_image_1_can_be_used_as_splash.png"),
+		new URL("http://localhost/path_to_eventual_image_2_3_4_if_we_want_a_full_project_page.jpg")
 	  ]
 	},
 	{
