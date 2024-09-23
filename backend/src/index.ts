@@ -2,15 +2,15 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { serve } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
-import config from "./config.ts";
+import config from "../config.ts";
 import { readFile, writeFile } from "node:fs/promises";
 //TODO: separate types file for backend to separate frontend and backend properly
-import { ProjectObject } from "./src/types.ts";
+import { ProjectObject } from "./types.ts";
 const app = new Hono();
 app.use("*", cors());
 app.use("/static/*", serveStatic({ root: "./" }));
 app.get("/api/projects", async (ctx) => {
-	const jsonData = await readFile("projects.json", "utf-8");
+	const jsonData = await readFile("../data/projects.json", "utf-8");
 	return ctx.json(JSON.parse(await jsonData));
 });
 app.put("/api/projects", async (ctx) => {
@@ -55,7 +55,7 @@ app.put("/api/projects", async (ctx) => {
 		await readFile("projects.json", "utf-8")
 	);
 	jsonData.push(projectObject);
-	writeFile("projects.json", JSON.stringify(jsonData, null, 2), {
+	writeFile("../data/projects.json", JSON.stringify(jsonData, null, 2), {
 		encoding: "utf-8",
 	});
 	return ctx.json(
