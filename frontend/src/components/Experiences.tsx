@@ -10,6 +10,7 @@ export default function Experiences(props: Readonly<PropsWithChildren<Experience
 				<Experience
 					id={experience.id}
 					name={experience.name}
+					description={experience.description}
 					fromDate={experience.fromDate}
 					toDate={experience.toDate}
 					key={experience.id}
