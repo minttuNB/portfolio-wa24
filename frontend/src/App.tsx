@@ -64,7 +64,9 @@ function App() {
 				<Experiences experiences={experiences}>
 					<h1>Experiences</h1>
 				</Experiences>
-				<Projects projects={projects} />
+				<Projects projects={projects}>
+					<h1>Projects</h1>
+				</Projects>
 			</main>
 			<PageFooter />
 		</>
