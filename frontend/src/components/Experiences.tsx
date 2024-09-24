@@ -12,6 +12,7 @@ export default function Experiences(props: Readonly<PropsWithChildren<Experience
 					name={experience.name}
 					fromDate={experience.fromDate}
 					toDate={experience.toDate}
+					key={experience.id}
 				/>
 			))}
 		</section>
