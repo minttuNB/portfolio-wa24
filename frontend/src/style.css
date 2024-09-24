@@ -239,4 +239,13 @@ input {
 			}
 		}
 	}
+	#experiences{
+		article{
+			max-width: 1000px;
+		}
+	}
+	form{
+		max-width: 1000px;
+		margin: auto;
+	}
 }
