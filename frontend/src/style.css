@@ -1,6 +1,7 @@
 :root {
 	--text-color: hsla(0, 0%, 100%, 0.87);
 	--accent-color: hsl(24, 100%, 50%);
+	--tame-accent-color: hsl(22, 6%, 35%);
 	--background-color: hsl(230, 8%, 8%);
 	--lighter-background: hsla(230, 14%, 17%, 0.8);
 	--lighter-background-no-alpha: hsla(230, 14%, 17%, 1);
@@ -27,7 +28,7 @@ a:hover {
 	color: var(--accent-color);
 	cursor: pointer;
 }
-body{
+body {
 	margin: 0;
 	min-width: 320px;
 	min-height: 100vh;
@@ -106,6 +107,24 @@ header {
 		}
 	}
 }
+#experiences {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	article {
+		background-color: var(--tame-accent-color);
+		border-radius: 1rem;
+		width: 100%;
+		p:last-of-type{
+			text-align: left;
+			background-color: var(--lighter-background);
+			width: 100%;
+			padding: 1rem;
+			border-radius: 0 0 1rem 1rem;
+			margin-bottom: 0;
+		}
+	}
+}
 footer {
 	display: flex;
 	align-items: center;
@@ -138,6 +157,7 @@ form {
 	gap: 0.75rem;
 	h1 {
 		margin: 0;
+		text-align: center;
 	}
 }
 input[type="submit"] {
