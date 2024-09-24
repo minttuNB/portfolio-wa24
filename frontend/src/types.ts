@@ -11,4 +11,14 @@ type ProjectProps = {
 type ProjectsProps = {
 	projects: ProjectProps[];
 };
-export type { ProjectProps, ProjectsProps };
+type ExperienceProps = {
+	id: UUID;
+	name: string;
+	description?: string;
+	fromDate: Date;
+	toDate?: Date;
+};
+type ExperiencesProps = {
+	experiences: ExperienceProps[];
+};
+export type { ProjectProps, ProjectsProps, ExperienceProps, ExperiencesProps };
