@@ -6,8 +6,8 @@ export default function Experience(props: ExperienceProps) {
 			<h2>{props.name}</h2>
 			<p>{props.description}</p>
 			{props.toDate
-				? (<p>{props.fromDate.toString()}-{props.toDate.toString()}</p>)
-				: (<p>from {props.fromDate.toString()}</p>)}
+				? (<p>{props.fromDate.toDateString()}-{props.toDate.toDateString()}</p>)
+				: (<p>from {props.fromDate.toDateString()}</p>)}
 		</article>
 	);
 }
