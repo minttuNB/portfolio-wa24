@@ -1,3 +1,4 @@
+import CreateProjectForm from "./components/CreateProjectForm";
 import Experiences from "./components/Experiences";
 import PageFooter from "./components/PageFooter";
 import PageHeader from "./components/PageHeader";
@@ -67,6 +68,7 @@ function App() {
 				<Projects projects={projects}>
 					<h1>Projects</h1>
 				</Projects>
+				<CreateProjectForm></CreateProjectForm>
 			</main>
 			<PageFooter />
 		</>
