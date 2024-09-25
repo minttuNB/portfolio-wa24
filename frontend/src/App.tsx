@@ -4,7 +4,7 @@ import Experiences from "./components/Experiences";
 import PageFooter from "./components/PageFooter";
 import PageHeader from "./components/PageHeader";
 import Projects from "./components/Projects";
-import { ExperienceProps, ProjectProps } from "./types";
+import { Action, ExperienceProps, ProjectProps } from "./types";
 import Contact from "./components/Contact";
 const projectsList: ProjectProps[] = [
 	{
@@ -75,7 +75,19 @@ function App() {
 			url: new URL(formData.get("url") as string),
 			images: [new URL(formData.get("image-url") as string)],
 		};
-		setProjects((projects) => [...projects, project]);
+		HandleProjectMutation("add", project);
+	}
+	function HandleProjectMutation(action: Action, project: ProjectProps) {
+		switch (action) {
+			case "add":
+				setProjects((projects) => [...projects, project]);
+				break;
+			case "remove":
+				setProjects((projects) => projects.filter(proj => proj.id !== project.id));
+				break;
+			default:
+				break;
+		}
 	}
 	function PageAnchorClickedHandler(
 		event: React.MouseEvent<HTMLAnchorElement>,
