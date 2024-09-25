@@ -94,6 +94,15 @@ function App() {
 	function PageAnchorClickedHandler(page: string): void {
 		setActivePage(page);
 	}
+	function MessageSentHandler(event: FormEvent<HTMLFormElement>): void {
+		event.preventDefault();
+		const form = event.target as HTMLFormElement;
+		const formData = new FormData(form);
+		form.querySelector("pre")!.innerHTML = JSON.stringify({
+			name: formData.get("contact-name"),
+			message: formData.get("contact-message"),
+		}, null, 2);
+	}
 	return (
 		<>
 			<PageHeader onPageAnchorClicked={PageAnchorClickedHandler} />
@@ -105,7 +114,10 @@ function App() {
 						}
 					/>
 				) : activePage == "contact" ? (
-					<Contact email="funkyemail@sjokoladesma.sj">
+					<Contact
+						email="funkyemail@sjokoladesma.sj"
+						onSendMessageFormSubmitted={MessageSentHandler}
+					>
 						<h1>Contact</h1>
 					</Contact>
 				) : (
@@ -113,7 +125,10 @@ function App() {
 						<Experiences experiences={experiences}>
 							<h1>Experiences</h1>
 						</Experiences>
-						<Projects projects={projects} handleProjectMutation={HandleProjectMutation}>
+						<Projects
+							projects={projects}
+							handleProjectMutation={HandleProjectMutation}
+						>
 							<h1>Projects</h1>
 						</Projects>
 						<CreateProjectForm
@@ -121,7 +136,10 @@ function App() {
 								ProjectFormSubmittedHandler
 							}
 						/>
-						<Contact email="funkyemail@sjokoladesma.sj">
+						<Contact
+							email="funkyemail@sjokoladesma.sj"
+							onSendMessageFormSubmitted={MessageSentHandler}
+						>
 							<h1>Contact</h1>
 						</Contact>
 					</>
