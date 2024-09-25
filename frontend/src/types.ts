@@ -25,10 +25,17 @@ type ExperiencesProps = {
 type CreateProjectFormProps = {
 	onCreateProjectFormSubmitted: (event: FormEvent<HTMLFormElement>) => void;
 };
+export const actions = {
+	add: "add",
+	remove: "remove",
+  };
+  
+type Action = (typeof actions)[keyof typeof actions];
 export type {
 	ProjectProps,
 	ProjectsProps,
 	ExperienceProps,
 	ExperiencesProps,
 	CreateProjectFormProps,
+	Action
 };
