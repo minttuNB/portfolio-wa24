@@ -5,6 +5,7 @@ import PageFooter from "./components/PageFooter";
 import PageHeader from "./components/PageHeader";
 import Projects from "./components/Projects";
 import { ExperienceProps, ProjectProps } from "./types";
+import Contact from "./components/Contact";
 const projectsList: ProjectProps[] = [
 	{
 		id: "aedca1bf-2aab-40fc-b007-868f435acdaf",
@@ -60,34 +61,61 @@ const experiences: ExperienceProps[] = [
 ];
 function App() {
 	const [projects, setProjects] = useState(projectsList);
+	const [activePage, setActivePage] = useState("projects");
 	function ProjectFormSubmittedHandler(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		const form = event.target as HTMLFormElement | null;
-		if(!form) return;
+		if (!form) return;
 		const formData = new FormData(form);
 		const project: ProjectProps = {
 			id: crypto.randomUUID(),
 			name: formData.get("name") as string,
-			description: formData.get("description") as string || undefined,
+			description: (formData.get("description") as string) || undefined,
 			date: new Date(formData.get("date") as string),
 			url: new URL(formData.get("url") as string),
-			images: [new URL(formData.get("image-url") as string)]
+			images: [new URL(formData.get("image-url") as string)],
 		};
 		setProjects((projects) => [...projects, project]);
 	}
+	function PageAnchorClickedHandler(
+		event: React.MouseEvent<HTMLAnchorElement>,
+		page: string
+	): void {
+		event.preventDefault();
+		setActivePage(page);
+	}
 	return (
 		<>
-			<PageHeader />
+			<PageHeader onPageAnchorClicked={PageAnchorClickedHandler} />
 			<main>
-				<Experiences experiences={experiences}>
-					<h1>Experiences</h1>
-				</Experiences>
-				<Projects projects={projects}>
-					<h1>Projects</h1>
-				</Projects>
-				<CreateProjectForm
-					onCreateProjectFormSubmitted={ProjectFormSubmittedHandler}
-				></CreateProjectForm>
+				{activePage == "createProject" ? (
+					<CreateProjectForm
+						onCreateProjectFormSubmitted={
+							ProjectFormSubmittedHandler
+						}
+					/>
+				) : activePage == "contact" ? (
+					<Contact email="funkyemail@sjokoladesma.sj">
+						<h1>Contact</h1>
+					</Contact>
+				) : (
+					<>
+						<Experiences experiences={experiences}>
+							<h1>Experiences</h1>
+						</Experiences>
+						<Projects projects={projects}>
+							<h1>Projects</h1>
+						</Projects>
+						<CreateProjectForm
+							onCreateProjectFormSubmitted={
+								ProjectFormSubmittedHandler
+							}
+						/>
+						<Contact email="funkyemail@sjokoladesma.sj">
+							<h1>Contact</h1>
+						</Contact>
+					</>
+				)}
 			</main>
 			<PageFooter />
 		</>
