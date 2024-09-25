@@ -1,4 +1,5 @@
 import { UUID } from "crypto";
+import { FormEvent } from "react";
 
 type ProjectProps = {
 	id: UUID;
@@ -21,4 +22,13 @@ type ExperienceProps = {
 type ExperiencesProps = {
 	experiences: ExperienceProps[];
 };
-export type { ProjectProps, ProjectsProps, ExperienceProps, ExperiencesProps };
+type CreateProjectFormProps = {
+	onCreateProjectFormSubmitted: (event: FormEvent<HTMLFormElement>) => void;
+};
+export type {
+	ProjectProps,
+	ProjectsProps,
+	ExperienceProps,
+	ExperiencesProps,
+	CreateProjectFormProps,
+};

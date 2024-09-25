@@ -1,6 +1,8 @@
-export default function CreateProjectForm() {
+import { CreateProjectFormProps } from "../types";
+
+export default function CreateProjectForm(props: CreateProjectFormProps) {
 	return (
-		<form>
+		<form onSubmit={props.onCreateProjectFormSubmitted}>
 			<h1>Add a project</h1>
 			<p id="response-message"></p>
 			<label htmlFor="name">Project name (required)</label>
