@@ -1,10 +1,11 @@
+import { FormEvent, useState } from "react";
 import CreateProjectForm from "./components/CreateProjectForm";
 import Experiences from "./components/Experiences";
 import PageFooter from "./components/PageFooter";
 import PageHeader from "./components/PageHeader";
 import Projects from "./components/Projects";
 import { ExperienceProps, ProjectProps } from "./types";
-const projects: ProjectProps[] = [
+const projectsList: ProjectProps[] = [
 	{
 		id: "aedca1bf-2aab-40fc-b007-868f435acdaf",
 		name: "Project 1",
@@ -58,6 +59,22 @@ const experiences: ExperienceProps[] = [
 	},
 ];
 function App() {
+	const [projects, setProjects] = useState(projectsList);
+	function ProjectFormSubmittedHandler(event: FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+		const form = event.target as HTMLFormElement | null;
+		if(!form) return;
+		const formData = new FormData(form);
+		const project: ProjectProps = {
+			id: crypto.randomUUID(),
+			name: formData.get("name") as string,
+			description: formData.get("description") as string || undefined,
+			date: new Date(formData.get("date") as string),
+			url: new URL(formData.get("url") as string),
+			images: [new URL(formData.get("image-url") as string)]
+		};
+		setProjects((projects) => [...projects, project]);
+	}
 	return (
 		<>
 			<PageHeader />
@@ -68,7 +85,9 @@ function App() {
 				<Projects projects={projects}>
 					<h1>Projects</h1>
 				</Projects>
-				<CreateProjectForm></CreateProjectForm>
+				<CreateProjectForm
+					onCreateProjectFormSubmitted={ProjectFormSubmittedHandler}
+				></CreateProjectForm>
 			</main>
 			<PageFooter />
 		</>
