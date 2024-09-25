@@ -18,9 +18,11 @@ export default function Project(props: ProjectProps) {
 				) : (
 					<i>No description provided</i>
 				)}
-				<a className="link-button" href={props.url?.toString()}>
-					Learn more
-				</a>
+				{props.url ? (
+					<a className="link-button" href={props.url?.toString()}>
+						Learn more
+					</a>
+				) : null}
 			</section>
 		</article>
 	);
