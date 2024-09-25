@@ -83,17 +83,15 @@ function App() {
 				setProjects((projects) => [...projects, project]);
 				break;
 			case "remove":
-				setProjects((projects) => projects.filter(proj => proj.id !== project.id));
+				setProjects((projects) =>
+					projects.filter((proj) => proj.id !== project.id)
+				);
 				break;
 			default:
 				break;
 		}
 	}
-	function PageAnchorClickedHandler(
-		event: React.MouseEvent<HTMLAnchorElement>,
-		page: string
-	): void {
-		event.preventDefault();
+	function PageAnchorClickedHandler(page: string): void {
 		setActivePage(page);
 	}
 	return (
@@ -115,7 +113,7 @@ function App() {
 						<Experiences experiences={experiences}>
 							<h1>Experiences</h1>
 						</Experiences>
-						<Projects projects={projects}>
+						<Projects projects={projects} handleProjectMutation={HandleProjectMutation}>
 							<h1>Projects</h1>
 						</Projects>
 						<CreateProjectForm

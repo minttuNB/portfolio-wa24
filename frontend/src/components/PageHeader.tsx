@@ -1,5 +1,5 @@
 export type PageHeaderProps = {
-	onPageAnchorClicked: (event: React.MouseEvent<HTMLAnchorElement>, page: string) => void;
+	onPageAnchorClicked: (page: string) => void;
 };
 export default function PageHeader(props: PageHeaderProps) {
 	const { onPageAnchorClicked } = props;
@@ -11,18 +11,18 @@ export default function PageHeader(props: PageHeaderProps) {
 				</a>
 				<menu>
 					<li>
-						<a onClick={(event) => {
-							onPageAnchorClicked(event, "projects")
+						<a onClick={() => {
+							onPageAnchorClicked("projects")
 						}}>Projects</a>
 					</li>
 					{/* <li>
-						<a onClick={(event) => {
-							onPageAnchorClicked(event, "createProject")
+						<a onClick={() => {
+							onPageAnchorClicked("createProject")
 						}}>Create project</a>
 					</li>
 					<li>
-						<a onClick={(event) => {
-							onPageAnchorClicked(event, "contact")
+						<a onClick={() => {
+							onPageAnchorClicked("contact")
 						}}>Contact</a>
 					</li> */}
 				</menu>
