@@ -11,6 +11,7 @@ type ProjectProps = {
 };
 type ProjectsProps = {
 	projects: ProjectProps[];
+	handleProjectMutation: (action: Action, project: ProjectProps) => void;
 };
 type ExperienceProps = {
 	id: UUID;
