@@ -9,7 +9,7 @@ export default function Experiences(
 		<>
 			{props.children}
 			<section id="experiences">
-				{props.experiences.map((experience) => (
+				{props.experiences.length > 0 ? props.experiences.map((experience) => (
 					<Experience
 						id={experience.id}
 						name={experience.name}
@@ -18,7 +18,7 @@ export default function Experiences(
 						toDate={experience.toDate}
 						key={experience.id}
 					/>
-				))}
+				)) : <p>No known experiences.</p>}
 			</section>
 		</>
 	);

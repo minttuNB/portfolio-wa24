@@ -9,7 +9,7 @@ export default function Projects(
 		<>
 			{props.children}
 			<section id="projects">
-				{props.projects.map((project: ProjectProps) => (
+				{props.projects.length > 0 ? props.projects.map((project: ProjectProps) => (
 					<Project
 						id={project.id}
 						name={project.name}
@@ -19,7 +19,7 @@ export default function Projects(
 						images={project.images}
 						key={project.id}
 					/>
-				))}
+				)) : <p>No known projects.</p>}
 			</section>
 		</>
 	);
