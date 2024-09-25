@@ -92,6 +92,7 @@ header {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
+		position: relative;
 		p {
 			margin: 2rem 0;
 		}
@@ -192,6 +193,19 @@ input {
 	display: block !important;
 	padding: 1rem;
 	border-radius: 0.5rem;
+}
+.remove-button {
+	position: absolute;
+	display:flex;
+	top: 0;
+	right: 0;
+	width: 1rem;
+	height: 1rem;
+	background: rgb(255, 48, 48);
+	color: white;
+	border-radius: 50%;
+	align-items: center;
+	justify-content: center;
 }
 @media (prefers-color-scheme: light) {
 	:root {
