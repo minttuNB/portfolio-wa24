@@ -59,7 +59,6 @@ export default function Projects(
 					)
 						.sort((el1, el2) => el2[1] - el1[1])
 						.map((category) => {
-							console.log(category);
 							return (
 								<span className="category-box">
 									{category[0]}: {category[1]}
