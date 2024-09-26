@@ -19,7 +19,7 @@ const experiences: ExperienceProps[] = [
 function App() {
 	const [projects, setProjects] = useState<ProjectProps[]>([]);
 	const [activePage, setActivePage] = useState("projects");
-	async function fetchProjectData() {
+	function fetchProjectData() {
 		fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/projects`))
 			.then((res) => res.json())
 			.then((res: ProjectProps[]) => setProjects(res));
