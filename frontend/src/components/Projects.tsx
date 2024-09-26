@@ -44,6 +44,27 @@ export default function Projects(
 					<p>No known projects.</p>
 				)}
 			</section>
+			<section id="category-counter">
+				<h3>Total in categories:</h3>
+				<section className="categories">
+				{Object.entries(
+					props.projects.reduce((acc, current) => {
+						if (current.categories) {
+							for (const category of current.categories) {
+								acc[category] = (acc[category] || 0)+1;
+							}
+						}
+						return acc;
+					}, {} as Record<string, number>)
+				).map((category) => {
+					console.log(category);
+					return (
+					<span className="category-box">
+						{category[0]}: {category[1]}
+					</span>
+				)})}
+				</section>
+			</section>
 		</>
 	);
 }
