@@ -61,9 +61,10 @@ main {
 header {
 	position: sticky;
 	top: 0;
+	z-index: 999;
 	nav {
 		background: var(--lighter-background);
-		box-shadow: 0 0.5rem #4745473b;
+		box-shadow: 0 0.5rem hsla(300, 1%, 27%, 0.231);
 		display: flex;
 		height: 6rem;
 		flex-direction: row;
@@ -109,6 +110,9 @@ header {
 		section {
 			padding: 2rem;
 			width: 100%;
+			p:last-of-type {
+				margin-bottom: 0;
+			}
 		}
 	}
 }
@@ -212,7 +216,7 @@ input {
 	gap: 0.5rem;
 	flex-direction: column;
 }
-.categories{
+.categories {
 	display: flex;
 	gap: 0.5rem;
 	flex-direction: row;
