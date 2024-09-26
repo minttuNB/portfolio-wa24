@@ -8,7 +8,7 @@ const app = new Hono();
 app.use("*", cors());
 app.use("/static/*", serveStatic({ root: "./" }));
 app.get("/api/projects", async (ctx) => {
-	const jsonData = await readFile("../data/projects.json", "utf-8");
+	const jsonData = await readFile("./data/projects.json", "utf-8");
 	return ctx.json(JSON.parse(await jsonData));
 });
 app.put("/api/projects", async (ctx) => {
@@ -50,10 +50,10 @@ app.put("/api/projects", async (ctx) => {
 	}
 	//Update file with new project (TODO: factor out into storage handling functions)
 	let jsonData: Project[] = JSON.parse(
-		await readFile("projects.json", "utf-8")
+		await readFile("./data/projects.json", "utf-8")
 	);
 	jsonData.push(projectObject);
-	writeFile("../data/projects.json", JSON.stringify(jsonData, null, 2), {
+	writeFile("./data/projects.json", JSON.stringify(jsonData, null, 2), {
 		encoding: "utf-8",
 	});
 	return ctx.json(
