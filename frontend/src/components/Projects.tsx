@@ -51,7 +51,7 @@ export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps
 						.sort((el1, el2) => el2[1] - el1[1])
 						.map((category) => {
 							return (
-								<span className="category-box">
+								<span key={category[0]} className="category-box">
 									{category[0]}: {category[1]}
 								</span>
 							);
