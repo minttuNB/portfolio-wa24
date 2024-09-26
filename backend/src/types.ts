@@ -7,5 +7,6 @@ type Project = {
 	date?: Date;
 	url?: URL;
 	images?: URL[];
+	categories?: string[];
 };
 export type { Project };
