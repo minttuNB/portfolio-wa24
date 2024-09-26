@@ -8,5 +8,6 @@ type Project = {
 	url?: URL;
 	images?: URL[];
 	categories?: string[];
+	createdAt: Date;
 };
 export type { Project };

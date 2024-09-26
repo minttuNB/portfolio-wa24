@@ -9,7 +9,8 @@
 			"http://localhost/path_to_image_1_can_be_used_as_splash.png",
 			"http://localhost/path_to_eventual_image_2_3_4_if_we_want_a_full_project_page.jpg"
 		],
-		"categories": ["placeholder"]
+		"categories": ["placeholder"],
+		"createdAt": "2024-09-04T15:53:34.000Z"
 	},
 	{
 		"id": "1a111f0d-b1bd-4a7a-ab61-696597bef59d",
@@ -17,10 +18,9 @@
 		"description": "My first Electron project, bringing to life the popular at the time Bongo Cat as an overlay for streamers. Supports keyboard + mouse, keyboard + drawing tablet or keyboard only.",
 		"date": "2018-09-17T00:00:00.000Z",
 		"url": "https://github.com/minttuNB/ppcat",
-		"images": [
-			"https://upload.wikimedia.org/wikipedia/en/7/7a/Bongo_cat.png"
-		],
-		"categories": ["JavaScript", "Electron", "Node.js"]
+		"images": ["https://upload.wikimedia.org/wikipedia/en/7/7a/Bongo_cat.png"],
+		"categories": ["JavaScript", "Electron", "Node.js"],
+		"createdAt": "2024-09-04T15:53:34.000Z"
 	},
 	{
 		"id": "543dcd97-45a9-4a51-a28b-81d0c0e5fe39",
@@ -30,6 +30,7 @@
 		"images": [
 			"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Emoji_u1f422.svg/1200px-Emoji_u1f422.svg.png"
 		],
-		"categories": ["Java", "Javalin", "JavaScript", "Webdesign"]
+		"categories": ["Java", "Javalin", "JavaScript", "Webdesign"],
+		"createdAt": "2024-09-04T15:53:34.000Z"
 	}
 ]

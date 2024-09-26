@@ -8,7 +8,7 @@ app.use("*", cors());
 app.use("/static/*", serveStatic({ root: "./" }));
 app.get("/api/projects", async (ctx) => {
 	const jsonData = await readFile("./data/projects.json", "utf-8");
-	return ctx.json(JSON.parse(await jsonData));
+	return ctx.json(JSON.parse(await jsonData) as Project[]);
 });
 app.put("/api/projects", async (ctx) => {
 	let data = await ctx.req.json();
@@ -20,6 +20,7 @@ app.put("/api/projects", async (ctx) => {
 		project = {
 			id: crypto.randomUUID(),
 			name: data.name,
+			createdAt: new Date(),
 		};
 	}
 	if (data.description.length > 0) project.description = data.description;
