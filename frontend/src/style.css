@@ -196,7 +196,7 @@ input {
 }
 .remove-button {
 	position: absolute;
-	display:flex;
+	display: flex;
 	top: 0;
 	right: 0;
 	width: 1rem;
