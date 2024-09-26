@@ -23,6 +23,7 @@ const projectsList: ProjectProps[] = [
 				"http://localhost/path_to_eventual_image_2_3_4_if_we_want_a_full_project_page.jpg"
 			),
 		],
+		categories: ["placeholder"],
 	},
 	{
 		id: "1a111f0d-b1bd-4a7a-ab61-696597bef59d",
@@ -36,6 +37,7 @@ const projectsList: ProjectProps[] = [
 				"https://upload.wikimedia.org/wikipedia/en/7/7a/Bongo_cat.png"
 			),
 		],
+		categories: ["JavaScript", "Electron", "Node.js"],
 	},
 	{
 		id: "543dcd97-45a9-4a51-a28b-81d0c0e5fe39",
@@ -48,6 +50,7 @@ const projectsList: ProjectProps[] = [
 				"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Emoji_u1f422.svg/1200px-Emoji_u1f422.svg.png"
 			),
 		],
+		categories: ["Java", "Javalin", "JavaScript", "Webdesign"]
 	},
 ];
 const experiences: ExperienceProps[] = [
