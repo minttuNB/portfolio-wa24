@@ -7,6 +7,7 @@ export default function CreateProjectForm(props: CreateProjectFormProps) {
 	//? const [date, setDate] = useState()
 	const [url, setUrl] = useState("");
 	const [imageUrl, setImageUrl] = useState("");
+	const [category, setCategory] = useState("");
 	function updateName(event: FormEvent<HTMLInputElement>) {
 		const input = event.target as HTMLInputElement | null;
 		if (!input) return;
@@ -61,6 +62,17 @@ export default function CreateProjectForm(props: CreateProjectFormProps) {
 				pattern="http*://.*"
 				value={imageUrl}
 				onChange={(event) => setImageUrl(event.target.value)}
+			/>
+			<label htmlFor="category">Category</label>
+			<input
+				type="text"
+				name="category"
+				id="category"
+				placeholder="TypeScript, Rust, ..."
+				value={category}
+				onChange={(event) => {
+					setCategory(event.target.value);
+				}}
 			/>
 			<input type="submit" value="Add project" />
 		</form>

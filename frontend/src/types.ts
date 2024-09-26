@@ -8,6 +8,7 @@ type ProjectProps = {
 	date?: Date;
 	url?: URL;
 	images?: URL[];
+	categories?: string[];
 };
 type ProjectsProps = {
 	projects: ProjectProps[];
