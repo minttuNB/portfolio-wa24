@@ -11,9 +11,13 @@ export default function PageHeader(props: PageHeaderProps) {
 				</a>
 				<menu>
 					<li>
-						<a onClick={() => {
-							onPageAnchorClicked("projects")
-						}}>Projects</a>
+						<a
+							onClick={() => {
+								onPageAnchorClicked("projects");
+							}}
+						>
+							Projects
+						</a>
 					</li>
 					{/* <li>
 						<a onClick={() => {

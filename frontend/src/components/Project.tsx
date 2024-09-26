@@ -1,7 +1,9 @@
 import { PropsWithChildren } from "react";
 import { ProjectProps } from "../types";
 
-export default function Project(props: Readonly<PropsWithChildren<ProjectProps>>) {
+export default function Project(
+	props: Readonly<PropsWithChildren<ProjectProps>>
+) {
 	return (
 		<article>
 			{!props.images ? (
