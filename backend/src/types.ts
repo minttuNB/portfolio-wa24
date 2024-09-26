@@ -1,6 +1,6 @@
 import { UUID } from "crypto";
 
-type ProjectObject = {
+type Project = {
 	id: UUID;
 	name: string;
 	description?: string;
@@ -8,6 +8,4 @@ type ProjectObject = {
 	url?: URL;
 	images?: URL[];
 };
-export type {
-	ProjectObject
-}
+export type { Project };
