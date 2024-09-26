@@ -26,9 +26,9 @@ export default function Project(
 						Learn more
 					</a>
 				) : null}
-				{(props.categories && props.categories.length > 0) ? (
+				{props.categories && props.categories.length > 0 ? (
 					<p>Categories: {props.categories?.join(", ")}</p>
-				): null}
+				) : null}
 			</section>
 			{props.children}
 		</article>

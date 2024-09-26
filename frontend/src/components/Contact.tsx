@@ -14,7 +14,7 @@ export default function Contact(
 	function updateName(event: FormEvent<HTMLInputElement>) {
 		const input = event.target as HTMLInputElement | null;
 		if (!input) return;
-		if (input.value.length<1) {
+		if (input.value.length < 1) {
 			setNameError("Your name must be at least 1 character long.");
 			return;
 		}
@@ -24,7 +24,7 @@ export default function Contact(
 	function updateMessage(event: FormEvent<HTMLTextAreaElement>) {
 		const input = event.target as HTMLTextAreaElement | null;
 		if (!input) return;
-		if (input.value.length<1) {
+		if (input.value.length < 1) {
 			setMessageError("Your message must be at least 1 character long.");
 			return;
 		}
@@ -37,11 +37,13 @@ export default function Contact(
 			<button onClick={() => alert(`My email address is ${props.email}`)}>
 				Show email address
 			</button>
-			<form onSubmit={(event) =>{
-				props.onSendMessageFormSubmitted(event);
-				setName("");
-				setMessage("");
-			}}>
+			<form
+				onSubmit={(event) => {
+					props.onSendMessageFormSubmitted(event);
+					setName("");
+					setMessage("");
+				}}
+			>
 				<label htmlFor="contact-name">Your name (required)</label>
 				<input
 					type="text"
@@ -51,7 +53,11 @@ export default function Contact(
 					onChange={updateName}
 					required
 				/>
-				{nameError !== "" ? <p className="error-message">{nameError}</p> : ""}
+				{nameError !== "" ? (
+					<p className="error-message">{nameError}</p>
+				) : (
+					""
+				)}
 				<label htmlFor="contact-name">Your message</label>
 				<textarea
 					name="contact-message"
@@ -61,8 +67,12 @@ export default function Contact(
 					rows={20}
 					required
 				></textarea>
-				{messageError !== "" ? <p className="error-message">{messageError}</p> : ""}
-				<input type="submit" value="Send message"/>
+				{messageError !== "" ? (
+					<p className="error-message">{messageError}</p>
+				) : (
+					""
+				)}
+				<input type="submit" value="Send message" />
 				<h3>Sent data:</h3>
 				<pre></pre>
 			</form>
