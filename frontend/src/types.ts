@@ -1,8 +1,7 @@
-import { UUID } from "crypto";
 import { FormEvent } from "react";
 
 type ProjectProps = {
-	id: UUID;
+	id: ReturnType<typeof crypto.randomUUID>;
 	name: string;
 	description?: string;
 	date?: Date;
@@ -15,7 +14,7 @@ type ProjectsProps = {
 	handleProjectMutation: (action: Action, project: ProjectProps) => void;
 };
 type ExperienceProps = {
-	id: UUID;
+	id: ReturnType<typeof crypto.randomUUID>;
 	name: string;
 	description?: string;
 	fromDate: Date;
@@ -30,8 +29,8 @@ type CreateProjectFormProps = {
 export const actions = {
 	add: "add",
 	remove: "remove",
-  };
-  
+};
+
 type Action = (typeof actions)[keyof typeof actions];
 export type {
 	ProjectProps,
@@ -39,5 +38,5 @@ export type {
 	ExperienceProps,
 	ExperiencesProps,
 	CreateProjectFormProps,
-	Action
+	Action,
 };
