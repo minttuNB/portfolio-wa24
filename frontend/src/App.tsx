@@ -24,32 +24,49 @@ function App() {
 			.then((res) => res.json())
 			.then((res: ProjectProps[]) => setProjects(res));
 	}
+	function putProjectData(project: ProjectProps) {
+		console.log(JSON.stringify(project));
+		fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/projects`), {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(project),
+		}).then((res) => res.json());
+	}
 	useEffect(() => {
 		fetchProjectData();
-	});
+	}, []);
 	function ProjectFormSubmittedHandler(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		const form = event.target as HTMLFormElement | null;
 		if (!form) return;
 		const formData = new FormData(form);
-		const project: ProjectProps = {
+		let project: ProjectProps = {
 			id: crypto.randomUUID(),
 			name: formData.get("name") as string,
 			description: (formData.get("description") as string) || undefined,
 			date: new Date(formData.get("date") as string),
-			url: new URL(formData.get("url") as string),
-			images: [new URL(formData.get("image-url") as string)],
+			images: [],
 			categories: [formData.get("category") as string],
 		};
+		try {
+			project.url = new URL(formData.get("url") as string);
+		} catch (error) {}
+		try {
+			project.images = [new URL(formData.get("image-url") as string)];
+		} catch (error) {}
 		HandleProjectMutation("add", project);
 	}
 	function HandleProjectMutation(action: Action, project: ProjectProps) {
 		switch (action) {
 			case "add":
-				setProjects((projects) => [...projects, project]);
+				putProjectData(project);
+				fetchProjectData();
 				break;
 			case "remove":
-				setProjects((projects) => projects.filter((proj) => proj.id !== project.id));
+				removeProject(project.id);
+				fetchProjectData();
 				break;
 			default:
 				break;
