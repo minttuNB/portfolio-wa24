@@ -19,6 +19,7 @@ export default function Projects(
 							url={project.url}
 							images={project.images}
 							key={project.id}
+							categories={project.categories}
 						>
 							<button
 								className="remove-button"

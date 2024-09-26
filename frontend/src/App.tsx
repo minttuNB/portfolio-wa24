@@ -50,7 +50,7 @@ const projectsList: ProjectProps[] = [
 				"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Emoji_u1f422.svg/1200px-Emoji_u1f422.svg.png"
 			),
 		],
-		categories: ["Java", "Javalin", "JavaScript", "Webdesign"]
+		categories: ["Java", "Javalin", "JavaScript", "Webdesign"],
 	},
 ];
 const experiences: ExperienceProps[] = [
@@ -77,6 +77,7 @@ function App() {
 			date: new Date(formData.get("date") as string),
 			url: new URL(formData.get("url") as string),
 			images: [new URL(formData.get("image-url") as string)],
+			categories: [formData.get("category") as string],
 		};
 		HandleProjectMutation("add", project);
 	}
@@ -101,10 +102,14 @@ function App() {
 		event.preventDefault();
 		const form = event.target as HTMLFormElement;
 		const formData = new FormData(form);
-		form.querySelector("pre")!.innerHTML = JSON.stringify({
-			name: formData.get("contact-name"),
-			message: formData.get("contact-message"),
-		}, null, 2);
+		form.querySelector("pre")!.innerHTML = JSON.stringify(
+			{
+				name: formData.get("contact-name"),
+				message: formData.get("contact-message"),
+			},
+			null,
+			2
+		);
 	}
 	return (
 		<>
