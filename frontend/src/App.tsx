@@ -25,14 +25,25 @@ function App() {
 			.then((res: ProjectProps[]) => setProjects(res));
 	}
 	function putProjectData(project: ProjectProps) {
-		console.log(JSON.stringify(project));
 		fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/projects`), {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(project),
-		}).then((res) => res.json());
+		}).then(() => {
+			fetchProjectData();
+		});
+	}
+	function removeProjectData(id: ReturnType<typeof crypto.randomUUID>) {
+		fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/projects/${id}`), {
+			method: "DELETE",
+		}).then((res) => {
+			if (res.status !== 204) {
+				throw new Error("Something went wrong while deleting the project");
+			}
+			fetchProjectData();
+		});
 	}
 	useEffect(() => {
 		fetchProjectData();
@@ -62,11 +73,9 @@ function App() {
 		switch (action) {
 			case "add":
 				putProjectData(project);
-				fetchProjectData();
 				break;
 			case "remove":
-				removeProject(project.id);
-				fetchProjectData();
+				removeProjectData(project.id);
 				break;
 			default:
 				break;
