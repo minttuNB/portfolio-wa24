@@ -49,7 +49,6 @@ export default function CreateProjectForm(props: CreateProjectFormProps) {
 				name="url"
 				id="url"
 				placeholder="https://episkklutprosjekt.no"
-				pattern="http*://.*"
 				value={url}
 				onChange={(event) => setUrl(event.target.value)}
 			/>
@@ -59,7 +58,6 @@ export default function CreateProjectForm(props: CreateProjectFormProps) {
 				name="image-url"
 				id="image-url"
 				placeholder="https://episkklutprosjekt.no/logo.png"
-				pattern="http*://.*"
 				value={imageUrl}
 				onChange={(event) => setImageUrl(event.target.value)}
 			/>
