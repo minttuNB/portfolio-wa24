@@ -32,11 +32,4 @@ export const actions = {
 };
 
 type Action = (typeof actions)[keyof typeof actions];
-export type {
-	ProjectProps,
-	ProjectsProps,
-	ExperienceProps,
-	ExperiencesProps,
-	CreateProjectFormProps,
-	Action,
-};
+export type { ProjectProps, ProjectsProps, ExperienceProps, ExperiencesProps, CreateProjectFormProps, Action };

@@ -2,9 +2,7 @@ import Project from "./Project";
 import { ProjectProps, ProjectsProps } from "../types";
 import { PropsWithChildren } from "react";
 
-export default function Projects(
-	props: Readonly<PropsWithChildren<ProjectsProps>>
-) {
+export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps>>) {
 	return (
 		<>
 			{props.children}
@@ -12,28 +10,21 @@ export default function Projects(
 				{props.projects.length > 0 ? (
 					props.projects.map((project: ProjectProps) => (
 						<Project
+							key={project.id}
 							id={project.id}
 							name={project.name}
 							description={project.description}
 							date={project.date}
 							url={project.url}
 							images={project.images}
-							key={project.id}
 							categories={project.categories}
 						>
 							<button
 								className="remove-button"
 								title="Remove project"
 								onClick={() => {
-									if (
-										confirm(
-											`Do you really want to remove the project ${project.name}?`
-										)
-									)
-										props.handleProjectMutation(
-											"remove",
-											project
-										);
+									if (confirm(`Do you really want to remove the project ${project.name}?`))
+										props.handleProjectMutation("remove", project);
 								}}
 							>
 								X

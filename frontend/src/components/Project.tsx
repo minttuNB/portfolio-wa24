@@ -1,26 +1,17 @@
 import { PropsWithChildren } from "react";
 import { ProjectProps } from "../types";
 
-export default function Project(
-	props: Readonly<PropsWithChildren<ProjectProps>>
-) {
+export default function Project(props: Readonly<PropsWithChildren<ProjectProps>>) {
 	return (
 		<article>
 			{!props.images ? (
-				<img
-					src="https://via.placeholder.com/300"
-					alt={props.name}
-				></img>
+				<img src="https://via.placeholder.com/300" alt={props.name}></img>
 			) : (
 				<img src={props.images[0].toString()} alt={props.name}></img>
 			)}
 			<section>
 				<h2>{props.name}</h2>
-				{props.description ? (
-					<p>{props.description}</p>
-				) : (
-					<i>No description provided</i>
-				)}
+				{props.description ? <p>{props.description}</p> : <i>No description provided</i>}
 				{props.url ? (
 					<a className="link-button" href={props.url?.toString()}>
 						Learn more

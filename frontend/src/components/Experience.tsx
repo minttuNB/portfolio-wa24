@@ -9,8 +9,7 @@ export default function Experience(props: ExperienceProps) {
 			<p>{props.description}</p>
 			{props.toDate ? (
 				<p>
-					📅 {getDateString(props.fromDate)} —{" "}
-					{getDateString(props.toDate)}
+					📅 {getDateString(props.fromDate)} — {getDateString(props.toDate)}
 				</p>
 			) : (
 				<p>📅 from {getDateString(props.fromDate)}</p>

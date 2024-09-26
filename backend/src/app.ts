@@ -47,9 +47,7 @@ app.put("/api/projects", async (ctx) => {
 		project.images = [url];
 	}
 	//Update file with new project (TODO: factor out into storage handling functions)
-	let jsonData: Project[] = JSON.parse(
-		await readFile("./data/projects.json", "utf-8")
-	);
+	let jsonData: Project[] = JSON.parse(await readFile("./data/projects.json", "utf-8"));
 	jsonData.push(project);
 	writeFile("./data/projects.json", JSON.stringify(jsonData, null, 2), {
 		encoding: "utf-8",

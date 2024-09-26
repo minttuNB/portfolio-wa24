@@ -4,9 +4,7 @@ export type ContactProps = {
 	email: string;
 	onSendMessageFormSubmitted: (event: FormEvent<HTMLFormElement>) => void;
 };
-export default function Contact(
-	props: Readonly<PropsWithChildren<ContactProps>>
-) {
+export default function Contact(props: Readonly<PropsWithChildren<ContactProps>>) {
 	const [name, setName] = useState("");
 	const [nameError, setNameError] = useState("");
 	const [message, setMessage] = useState("");
@@ -34,9 +32,7 @@ export default function Contact(
 	return (
 		<>
 			{props.children}
-			<button onClick={() => alert(`My email address is ${props.email}`)}>
-				Show email address
-			</button>
+			<button onClick={() => alert(`My email address is ${props.email}`)}>Show email address</button>
 			<form
 				onSubmit={(event) => {
 					props.onSendMessageFormSubmitted(event);
@@ -45,19 +41,8 @@ export default function Contact(
 				}}
 			>
 				<label htmlFor="contact-name">Your name (required)</label>
-				<input
-					type="text"
-					name="contact-name"
-					id="contact-name"
-					value={name}
-					onChange={updateName}
-					required
-				/>
-				{nameError !== "" ? (
-					<p className="error-message">{nameError}</p>
-				) : (
-					""
-				)}
+				<input type="text" name="contact-name" id="contact-name" value={name} onChange={updateName} required />
+				{nameError !== "" ? <p className="error-message">{nameError}</p> : ""}
 				<label htmlFor="contact-name">Your message</label>
 				<textarea
 					name="contact-message"
@@ -67,11 +52,7 @@ export default function Contact(
 					rows={20}
 					required
 				></textarea>
-				{messageError !== "" ? (
-					<p className="error-message">{messageError}</p>
-				) : (
-					""
-				)}
+				{messageError !== "" ? <p className="error-message">{messageError}</p> : ""}
 				<input type="submit" value="Send message" />
 				<h3>Sent data:</h3>
 				<pre></pre>
