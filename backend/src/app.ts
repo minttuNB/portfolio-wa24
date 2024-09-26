@@ -3,6 +3,7 @@ import { readFile, writeFile } from "fs/promises";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { Project } from "./types";
+import { UUID } from "crypto";
 const app = new Hono();
 app.use("/*", cors());
 app.use("/static/*", serveStatic({ root: "./" }));
@@ -38,7 +39,6 @@ app.put("/api/projects", async (ctx) => {
 		}
 		project.url = url;
 	}
-	console.log(data);
 	if (data["images"] && data["images"].length !== 0) {
 		let url: URL;
 		try {
@@ -64,5 +64,15 @@ app.put("/api/projects", async (ctx) => {
 		},
 		201
 	);
+});
+app.delete("/api/projects/:id", async (ctx) => {
+	const projectId = (await ctx.req.param("id")) as UUID;
+	let jsonData = JSON.parse(await readFile("./data/projects.json", "utf-8")) as Project[];
+	jsonData = jsonData.filter((project) => project.id !== projectId);
+	writeFile("./data/projects.json", JSON.stringify(jsonData, null, 2), {
+		encoding: "utf-8",
+	});
+	ctx.status(204);
+	return ctx.body(null);
 });
 export default app;
