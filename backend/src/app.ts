@@ -2,7 +2,7 @@ import { serveStatic } from "@hono/node-server/serve-static";
 import { readFile, writeFile } from "fs/promises";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { Project } from "./types";
+import { Experience, Project } from "./types";
 import { UUID } from "crypto";
 const app = new Hono();
 app.use("/*", cors());
@@ -74,5 +74,9 @@ app.delete("/api/projects/:id", async (ctx) => {
 	});
 	ctx.status(204);
 	return ctx.body(null);
+});
+app.get("/api/experiences", async (ctx) => {
+	const jsonData = await readFile("./data/experiences.json", "utf-8");
+	return ctx.json(JSON.parse(await jsonData) as Experience[]);
 });
 export default app;
