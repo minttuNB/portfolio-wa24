@@ -10,4 +10,11 @@ type Project = {
 	categories?: string[];
 	createdAt: Date;
 };
-export type { Project };
+type Experience = {
+	id: UUID;
+	name: string;
+	description?: string;
+	fromDate: Date;
+	toDate?: Date;
+};
+export type { Project, Experience };
