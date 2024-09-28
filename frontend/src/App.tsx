@@ -7,17 +7,9 @@ import Projects from "./components/Projects";
 import { Action, ExperienceProps, ProjectProps } from "./types";
 import Contact from "./components/Contact";
 import config from "./config";
-const experiences: ExperienceProps[] = [
-	{
-		id: "96e74e93-d91a-4ada-9b9c-2baf5947c390",
-		name: "Funky worky",
-		description: "Hehe, worked lots",
-		fromDate: new Date("2024-09-20T15:21:20.442Z"),
-		toDate: new Date("2024-09-24T15:21:20.442Z"),
-	},
-];
 function App() {
 	const [projects, setProjects] = useState<ProjectProps[]>([]);
+	const [experiences, setExperiences] = useState<ExperienceProps[]>([]);
 	const [activePage, setActivePage] = useState("projects");
 	function fetchProjectData() {
 		fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/projects`))
@@ -45,8 +37,14 @@ function App() {
 			fetchProjectData();
 		});
 	}
+	function fetchExperienceData() {
+		fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/experiences`))
+			.then((res) => res.json())
+			.then((res: ExperienceProps[]) => setExperiences(res));
+	}
 	useEffect(() => {
 		fetchProjectData();
+		fetchExperienceData();
 	}, []);
 	function ProjectFormSubmittedHandler(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
