@@ -1,7 +1,9 @@
+import { PropsWithChildren } from "react";
+
 export type PageHeaderProps = {
 	onPageAnchorClicked: (page: string) => void;
 };
-export default function PageHeader(props: PageHeaderProps) {
+export default function PageHeader(props: Readonly<PropsWithChildren<PageHeaderProps>>) {
 	const { onPageAnchorClicked } = props;
 	return (
 		<header>
@@ -19,6 +21,7 @@ export default function PageHeader(props: PageHeaderProps) {
 							Projects
 						</a>
 					</li>
+					{props.children}
 					{/* <li>
 						<a onClick={() => {
 							onPageAnchorClicked("createProject")
