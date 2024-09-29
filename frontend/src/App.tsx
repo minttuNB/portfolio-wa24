@@ -108,7 +108,17 @@ function App() {
 	}
 	return (
 		<>
-			<PageHeader onPageAnchorClicked={PageAnchorClickedHandler} />
+			<PageHeader onPageAnchorClicked={PageAnchorClickedHandler}>
+				<label htmlFor="edit-mode-switch" id="edit-mode-switch-wrapper">
+					<span>Edit mode</span>
+					<input
+						type="checkbox"
+						onChange={(event) => HandleEditMode(event)}
+						role="switch"
+						id="edit-mode-switch"
+					/>
+				</label>
+			</PageHeader>
 			<main>
 				{activePage == "createProject" ? (
 					<CreateProjectForm onCreateProjectFormSubmitted={ProjectFormSubmittedHandler} />
@@ -118,10 +128,6 @@ function App() {
 					</Contact>
 				) : (
 					<>
-						<label className="edit-mode-switch">
-							<input type="checkbox" onChange={(event) => HandleEditMode(event)} />
-							<span className="slider"></span>
-						</label>
 						<Experiences experiences={experiences}>
 							<h1>Experiences</h1>
 						</Experiences>

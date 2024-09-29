@@ -191,6 +191,48 @@ input {
 	visibility: hidden;
 	display: none;
 }
+#edit-mode-switch-wrapper {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
+input:where([type="checkbox"][role="switch"]) {
+	appearance: none;
+	position: relative;
+	font-size: inherit;
+	width: 4rem;
+	height: 2rem;
+	box-sizing: content-box;
+	border: 1px solid;
+	border-radius: 1em;
+	vertical-align: text-bottom;
+	margin: auto;
+	color: inherit;
+	padding: 0;
+	transition: 0.4s;
+}
+input:where([type="checkbox"][role="switch"])::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translate(0, -50%);
+	box-sizing: border-box;
+	width: 1.4rem;
+	height: 1.4rem;
+	margin: 0 0.3rem;
+	border: 1px solid;
+	border-radius: 50%;
+	background: currentcolor;
+	transition: 0.4s;
+}
+input:where([type="checkbox"][role="switch"]):checked {
+	background-color: var(--accent-color);
+	transition: 0.4s;
+}
+input:where([type="checkbox"][role="switch"]):checked::before {
+	left: 2rem;
+}
 .error-message {
 	background: rgb(255, 48, 48);
 	color: white;
@@ -202,8 +244,8 @@ input {
 .remove-button {
 	position: absolute;
 	display: flex;
-	top: 0;
-	right: 0;
+	top: 0.25rem;
+	right: 0.25rem;
 	width: 1rem;
 	height: 1rem;
 	background: rgb(255, 48, 48);
