@@ -253,6 +253,7 @@ input:where([type="checkbox"][role="switch"]):checked::before {
 	border-radius: 50%;
 	align-items: center;
 	justify-content: center;
+	border: 1px white solid;
 }
 #category-counter {
 	display: flex;
