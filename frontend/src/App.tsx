@@ -11,6 +11,17 @@ function App() {
 	const [projects, setProjects] = useState<ProjectProps[]>([]);
 	const [experiences, setExperiences] = useState<ExperienceProps[]>([]);
 	const [activePage, setActivePage] = useState("projects");
+	const [isEditMode, setIsEditMode] = useState(false);
+	function HandleEditMode(event: React.ChangeEvent<HTMLInputElement>) {
+		switch (event.target.checked) {
+			case true:
+				setIsEditMode(true);
+				break;
+			case false:
+				setIsEditMode(false);
+				break;
+		}
+	}
 	function fetchProjectData() {
 		fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/projects`))
 			.then((res) => res.json())
@@ -107,10 +118,18 @@ function App() {
 					</Contact>
 				) : (
 					<>
+						<label className="edit-mode-switch">
+							<input type="checkbox" onChange={(event) => HandleEditMode(event)} />
+							<span className="slider"></span>
+						</label>
 						<Experiences experiences={experiences}>
 							<h1>Experiences</h1>
 						</Experiences>
-						<Projects projects={projects} handleProjectMutation={HandleProjectMutation}>
+						<Projects
+							projects={projects}
+							handleProjectMutation={HandleProjectMutation}
+							isEditMode={isEditMode}
+						>
 							<h1>Projects</h1>
 						</Projects>
 						<CreateProjectForm onCreateProjectFormSubmitted={ProjectFormSubmittedHandler} />

@@ -12,6 +12,7 @@ type ProjectProps = {
 type ProjectsProps = {
 	projects: ProjectProps[];
 	handleProjectMutation: (action: Action, project: ProjectProps) => void;
+	isEditMode: boolean;
 };
 type ExperienceProps = {
 	id: ReturnType<typeof crypto.randomUUID>;
