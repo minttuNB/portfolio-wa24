@@ -20,7 +20,7 @@ export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps
 							categories={project.categories}
 						>
 							<button
-								className="remove-button"
+								className={props.isEditMode ? "remove-button" : "remove-button invisible"}
 								title="Remove project"
 								onClick={() => {
 									if (confirm(`Do you really want to remove the project ${project.name}?`))
