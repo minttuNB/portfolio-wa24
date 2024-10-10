@@ -23,10 +23,10 @@ a {
 	font-weight: 500;
 	color: var(--accent-color);
 	text-decoration: inherit;
-}
-a:hover {
-	color: var(--accent-color);
-	cursor: pointer;
+	&:hover {
+		color: var(--accent-color);
+		cursor: pointer;
+	}
 }
 body {
 	margin: 0;
@@ -155,12 +155,12 @@ input[type="submit"],
 	padding: 1rem;
 	background: var(--lighter-background-no-alpha);
 	color: var(--text-color);
-	:hover {
+	&:hover {
 		border-color: var(--accent-color);
 		color: var(--accent-color);
 	}
-	:focus,
-	:focus-visible {
+	&:focus,
+	&:focus-visible {
 		outline: 4px auto -webkit-focus-ring-color;
 	}
 }
@@ -210,6 +210,9 @@ input:where([type="checkbox"][role="switch"]) {
 	color: inherit;
 	padding: 0;
 	transition: 0.4s;
+	&:hover {
+		cursor: pointer;
+	}
 }
 input:where([type="checkbox"][role="switch"])::before {
 	content: "";
@@ -254,6 +257,9 @@ input:where([type="checkbox"][role="switch"]):checked::before {
 	align-items: center;
 	justify-content: center;
 	border: 1px white solid;
+	&:hover {
+		color: white !important;
+	}
 }
 #category-counter {
 	display: flex;
