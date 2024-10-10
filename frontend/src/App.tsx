@@ -13,14 +13,7 @@ function App() {
 	const [activePage, setActivePage] = useState("projects");
 	const [isEditMode, setIsEditMode] = useState(false);
 	function HandleEditMode(event: React.ChangeEvent<HTMLInputElement>) {
-		switch (event.target.checked) {
-			case true:
-				setIsEditMode(true);
-				break;
-			case false:
-				setIsEditMode(false);
-				break;
-		}
+		setIsEditMode(event.target.checked);
 	}
 	function fetchProjectData() {
 		fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/projects`))
