@@ -2,11 +2,11 @@ import { FormEvent, useEffect, useState } from "react";
 import CreateProjectForm from "./components/CreateProjectForm";
 import Experiences from "./components/Experiences";
 import PageFooter from "./components/PageFooter";
-import PageHeader from "./components/PageHeader";
 import Projects from "./components/Projects";
 import { Action, ExperienceProps, ProjectProps } from "./types";
 import Contact from "./components/Contact";
 import config from "./config";
+import Navigation from "./components/Navigation";
 function App() {
 	const [projects, setProjects] = useState<ProjectProps[]>([]);
 	const [experiences, setExperiences] = useState<ExperienceProps[]>([]);
@@ -108,17 +108,19 @@ function App() {
 	}
 	return (
 		<>
-			<PageHeader onPageAnchorClicked={PageAnchorClickedHandler}>
-				<label htmlFor="edit-mode-switch" id="edit-mode-switch-wrapper">
-					<span>Edit mode</span>
-					<input
-						type="checkbox"
-						onChange={(event) => HandleEditMode(event)}
-						role="switch"
-						id="edit-mode-switch"
-					/>
-				</label>
-			</PageHeader>
+			<header>
+				<Navigation onPageAnchorClicked={PageAnchorClickedHandler}>
+					<label htmlFor="edit-mode-switch" id="edit-mode-switch-wrapper">
+						<span>Edit mode</span>
+						<input
+							type="checkbox"
+							onChange={(event) => HandleEditMode(event)}
+							role="switch"
+							id="edit-mode-switch"
+						/>
+					</label>
+				</Navigation>
+			</header>
 			<main>
 				{activePage == "createProject" ? (
 					<CreateProjectForm onCreateProjectFormSubmitted={ProjectFormSubmittedHandler} />
