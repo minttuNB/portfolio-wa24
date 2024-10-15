@@ -6,28 +6,28 @@ export type ContactProps = {
 };
 export default function Contact(props: Readonly<PropsWithChildren<ContactProps>>) {
 	const [name, setName] = useState("");
-	const [nameError, setNameError] = useState("");
+	const [nameError, setNameError] = useState<string | null>(null);
 	const [message, setMessage] = useState("");
-	const [messageError, setMessageError] = useState("");
+	const [messageError, setMessageError] = useState<string | null>(null);
 	function updateName(event: FormEvent<HTMLInputElement>) {
 		const input = event.target as HTMLInputElement | null;
 		if (!input) return;
+		setName(input.value);
 		if (input.value.length < 1) {
 			setNameError("Your name must be at least 1 character long.");
 			return;
 		}
-		setName(input.value);
-		setNameError("");
+		setNameError(null);
 	}
 	function updateMessage(event: FormEvent<HTMLTextAreaElement>) {
 		const input = event.target as HTMLTextAreaElement | null;
 		if (!input) return;
+		setMessage(input.value);
 		if (input.value.length < 1) {
 			setMessageError("Your message must be at least 1 character long.");
 			return;
 		}
-		setMessage(input.value);
-		setMessageError("");
+		setMessageError(null);
 	}
 	return (
 		<>
@@ -42,7 +42,7 @@ export default function Contact(props: Readonly<PropsWithChildren<ContactProps>>
 			>
 				<label htmlFor="contact-name">Your name (required)</label>
 				<input type="text" name="contact-name" id="contact-name" value={name} onChange={updateName} required />
-				{nameError !== "" ? <p className="error-message">{nameError}</p> : ""}
+				{nameError ? <p className="error-message">{nameError}</p> : ""}
 				<label htmlFor="contact-name">Your message</label>
 				<textarea
 					name="contact-message"
@@ -52,7 +52,7 @@ export default function Contact(props: Readonly<PropsWithChildren<ContactProps>>
 					rows={20}
 					required
 				></textarea>
-				{messageError !== "" ? <p className="error-message">{messageError}</p> : ""}
+				{messageError ? <p className="error-message">{messageError}</p> : ""}
 				<input type="submit" value="Send message" />
 				<h3>Sent data:</h3>
 				<pre></pre>
