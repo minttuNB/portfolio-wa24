@@ -3,7 +3,7 @@
 		"id": "aedca1bf-2aab-40fc-b007-868f435acdaf",
 		"name": "Project 1",
 		"description": "Sample project description",
-		"date": "Year or a more definite date of project work/completion",
+		"date": "1970-01-01T00:00:00Z",
 		"url": "https://example.project.party/fantastic",
 		"images": [
 			"http://localhost/path_to_image_1_can_be_used_as_splash.png",
