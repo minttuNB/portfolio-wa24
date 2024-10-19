@@ -1,7 +1,5 @@
+import { getISODateString } from "../../../lib/formatters";
 import { ExperienceProps } from "../../../types";
-function getDateString(date: Date) {
-	return date.toISOString().split("T")[0];
-}
 export default function Experience(props: ExperienceProps) {
 	return (
 		<article>
@@ -9,10 +7,10 @@ export default function Experience(props: ExperienceProps) {
 			<p>{props.description}</p>
 			{props.toDate ? (
 				<p>
-					📅 {getDateString(new Date(props.fromDate))} — {getDateString(new Date(props.toDate))}
+					📅 {getISODateString(new Date(props.fromDate))} — {getISODateString(new Date(props.toDate))}
 				</p>
 			) : (
-				<p>📅 from {getDateString(new Date(props.fromDate))}</p>
+				<p>📅 from {getISODateString(new Date(props.fromDate))}</p>
 			)}
 		</article>
 	);
