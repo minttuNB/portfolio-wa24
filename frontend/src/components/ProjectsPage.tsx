@@ -5,9 +5,17 @@ import Contact from "./Contact";
 import CreateProjectForm from "./CreateProjectForm";
 import Projects from "../features/projects/components/Projects";
 import { PortfolioContextType, usePortfolioContext } from "../contexts/PortfolioContext";
+import Experiences from "../features/experiences/components/Experiences";
+import useExperiences from "../features/experiences/useExperiences";
 type ProjectsPageProps = {};
 export default function ProjectsPage() {
 	const { add, remove, projects, isError, isLoading, error } = useProjects();
+	const {
+		experiences,
+		isError: isExperienceError,
+		isLoading: isExperienceLoading,
+		error: experienceError,
+	} = useExperiences();
 	function HandleProjectMutation(action: Action, project: Partial<ProjectProps>) {
 		switch (action) {
 			case "add":
@@ -58,6 +66,9 @@ export default function ProjectsPage() {
 	if (isError) return <p className="error-message">{error}</p>;
 	return (
 		<>
+			<Experiences experiences={experiences}>
+				<h1>Experiences</h1>
+			</Experiences>
 			<Projects projects={projects} handleProjectMutation={HandleProjectMutation} isEditMode={isEditMode}>
 				<h1>Projects</h1>
 			</Projects>
