@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import Experiences from "./components/Experiences";
+import Experiences from "./features/experiences/components/Experiences";
 import { ExperienceProps } from "./types";
 import config from "./config";
 import Layout from "./components/Layout";
 import ProjectsPage from "./components/ProjectsPage";
+import { PortfolioContextProvider, PortfolioContextType, usePortfolioContext } from "./contexts/PortfolioContext";
+
 function App() {
 	const [experiences, setExperiences] = useState<ExperienceProps[]>([]);
 	function fetchExperienceData() {
@@ -17,14 +19,16 @@ function App() {
 
 	return (
 		<>
-			<Layout>
-				<main>
-					<Experiences experiences={experiences}>
-						<h1>Experiences</h1>
-					</Experiences>
-					<ProjectsPage />
-				</main>
-			</Layout>
+			<PortfolioContextProvider value={usePortfolioContext() as PortfolioContextType}>
+				<Layout>
+					<main>
+						<Experiences experiences={experiences}>
+							<h1>Experiences</h1>
+						</Experiences>
+						<ProjectsPage />
+					</main>
+				</Layout>
+			</PortfolioContextProvider>
 		</>
 	);
 }

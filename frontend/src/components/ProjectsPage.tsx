@@ -3,11 +3,11 @@ import useProjects from "../features/projects/useProjects";
 import { Action, ProjectProps } from "../types";
 import Contact from "./Contact";
 import CreateProjectForm from "./CreateProjectForm";
-import Experiences from "./Experiences";
-import Projects from "./Projects";
+import Projects from "../features/projects/components/Projects";
+import { PortfolioContextType, usePortfolioContext } from "../contexts/PortfolioContext";
 type ProjectsPageProps = {};
-export default function ProjectsPage(props: ProjectsPageProps) {
-	const { add, remove, get, projects, error } = useProjects();
+export default function ProjectsPage() {
+	const { add, remove, projects } = useProjects();
 	function HandleProjectMutation(action: Action, project: Partial<ProjectProps>) {
 		switch (action) {
 			case "add":
@@ -53,6 +53,7 @@ export default function ProjectsPage(props: ProjectsPageProps) {
 			2
 		);
 	}
+	const { isEditMode } = usePortfolioContext() as PortfolioContextType;
 	return (
 		<>
 			<Projects projects={projects} handleProjectMutation={HandleProjectMutation} isEditMode={isEditMode}>
