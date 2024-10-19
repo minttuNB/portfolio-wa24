@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { ProjectProps } from "../types";
+import { ProjectProps } from "../../../types";
 
 export default function Project(props: Readonly<PropsWithChildren<ProjectProps>>) {
 	return (
