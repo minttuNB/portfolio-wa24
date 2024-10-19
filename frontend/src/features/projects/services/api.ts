@@ -1,5 +1,5 @@
-import config from "../../config";
-import { ProjectProps } from "../../types";
+import config from "../../../config";
+import { ProjectProps } from "../../../types";
 
 async function create(project: Partial<ProjectProps>) {
 	return fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/projects`), {
