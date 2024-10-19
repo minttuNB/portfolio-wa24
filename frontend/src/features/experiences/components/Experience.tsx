@@ -1,4 +1,4 @@
-import { ExperienceProps } from "../types";
+import { ExperienceProps } from "../../../types";
 function getDateString(date: Date) {
 	return date.toISOString().split("T")[0];
 }
