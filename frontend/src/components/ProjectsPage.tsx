@@ -7,7 +7,7 @@ import Projects from "../features/projects/components/Projects";
 import { PortfolioContextType, usePortfolioContext } from "../contexts/PortfolioContext";
 type ProjectsPageProps = {};
 export default function ProjectsPage() {
-	const { add, remove, projects } = useProjects();
+	const { add, remove, projects, isError, isLoading, error } = useProjects();
 	function HandleProjectMutation(action: Action, project: Partial<ProjectProps>) {
 		switch (action) {
 			case "add":
@@ -54,6 +54,8 @@ export default function ProjectsPage() {
 		);
 	}
 	const { isEditMode } = usePortfolioContext() as PortfolioContextType;
+	if (isLoading) return <p>Loading...</p>;
+	if (isError) return <p className="error-message">{error}</p>;
 	return (
 		<>
 			<Projects projects={projects} handleProjectMutation={HandleProjectMutation} isEditMode={isEditMode}>
