@@ -7,8 +7,7 @@ import Projects from "../features/projects/components/Projects";
 import { PortfolioContextType, usePortfolioContext } from "../contexts/PortfolioContext";
 import Experiences from "../features/experiences/components/Experiences";
 import useExperiences from "../features/experiences/useExperiences";
-type ProjectsPageProps = {};
-export default function ProjectsPage() {
+export default function PortfolioPage() {
 	const { add, remove, projects, isError, isLoading, error } = useProjects();
 	const {
 		experiences,

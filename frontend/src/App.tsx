@@ -1,5 +1,5 @@
 import Layout from "./components/Layout";
-import ProjectsPage from "./components/ProjectsPage";
+import PortfolioPage from "./components/PortfolioPage";
 import { PortfolioContextProvider, PortfolioContextType, usePortfolioContext } from "./contexts/PortfolioContext";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
 			<PortfolioContextProvider value={usePortfolioContext() as PortfolioContextType}>
 				<Layout>
 					<main>
-						<ProjectsPage />
+						<PortfolioPage />
 					</main>
 				</Layout>
 			</PortfolioContextProvider>
