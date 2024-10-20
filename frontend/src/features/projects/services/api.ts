@@ -1,9 +1,9 @@
 import config from "../../../config";
 import { ProjectProps } from "../../../types";
-import { projectSchema, projectsSchema } from "../lib/validate";
+import { validateProject, validateProjects } from "../lib/validate";
 
 async function create(project: Partial<ProjectProps>) {
-	return fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/projects`), {
+	return fetch(new URL(`${config.api.url}api/projects`), {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
@@ -12,19 +12,17 @@ async function create(project: Partial<ProjectProps>) {
 	});
 }
 async function read() {
-	const data: ProjectProps[] = await fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/projects`)).then(
-		(res) => res.json()
-	);
-	return projectsSchema.parse(data);
+	const data: ProjectProps[] = await fetch(new URL(`${config.api.url}api/projects`)).then((res) => res.json());
+	const validatedData = validateProjects(data);
+	return validatedData;
 }
 async function readOne(id: ReturnType<typeof crypto.randomUUID>) {
-	const data: ProjectProps = await fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/projects/${id}`)).then(
-		(res) => res.json()
-	);
-	return projectSchema.parse(data);
+	const data: ProjectProps = await fetch(new URL(`${config.api.url}api/projects/${id}`)).then((res) => res.json());
+	const validatedData = validateProject(data);
+	return validatedData;
 }
 async function remove(id: ReturnType<typeof crypto.randomUUID>) {
-	return fetch(new URL(`${config.apiAddress}:${config.apiPort}/api/projects/${id}`), {
+	return fetch(new URL(`${config.api.url}api/projects/${id}`), {
 		method: "DELETE",
 	});
 }

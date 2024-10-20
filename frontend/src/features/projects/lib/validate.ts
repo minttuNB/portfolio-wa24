@@ -6,10 +6,15 @@ const projectSchema = z.object({
 	description: z.string().optional(),
 	date: z.string().datetime().optional(),
 	url: z.string().url().optional(),
-	images: z.array(z.string().url().optional()),
+	images: z.array(z.string().url()).optional(),
 	categories: z.array(z.string()).optional(),
 	createdAt: z.string().datetime(),
 });
 const projectsSchema = z.array(projectSchema);
-
-export { projectSchema, projectsSchema };
+function validateProject(data: unknown) {
+	return projectSchema.parse(data);
+}
+function validateProjects(data: unknown) {
+	return projectsSchema.parse(data);
+}
+export { projectSchema, projectsSchema, validateProject, validateProjects };
