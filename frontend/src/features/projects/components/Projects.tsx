@@ -19,16 +19,30 @@ export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps
 							images={project.images}
 							categories={project.categories}
 						>
-							<button
-								className={props.isEditMode ? "remove-button" : "remove-button invisible"}
-								title="Remove project"
-								onClick={() => {
-									if (confirm(`Do you really want to remove the project ${project.name}?`))
-										props.handleProjectMutation("remove", project);
-								}}
-							>
-								X
-							</button>
+							<div className={props.isEditMode ? "edit-controls" : "edit-controls invisible"}>
+								<label htmlFor="publish-switch" className="switch-wrapper">
+									<span>Publish</span>
+									<input
+										type="checkbox"
+										onChange={(event) => {
+											console.log("PATCH request to publish a project");
+										}}
+										role="switch"
+										className="publish-switch"
+									/>
+								</label>
+								<button
+									//className={props.isEditMode ? "remove-button" : "remove-button invisible"}
+									className="remove-button"
+									title="Remove project"
+									onClick={() => {
+										if (confirm(`Do you really want to remove the project ${project.name}?`))
+											props.handleProjectMutation("remove", project);
+									}}
+								>
+									X
+								</button>
+							</div>
 						</Project>
 					))
 				) : (
