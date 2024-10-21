@@ -22,6 +22,7 @@ app.put("/api/projects", async (ctx) => {
 			id: crypto.randomUUID(),
 			name: data.name,
 			createdAt: new Date(),
+			published: false,
 		};
 	}
 	if (data.description && data.description.length > 0) project.description = data.description;

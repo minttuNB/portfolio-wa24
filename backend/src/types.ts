@@ -9,6 +9,7 @@ type Project = {
 	images?: URL[];
 	categories?: string[];
 	createdAt: Date;
+	published: boolean;
 };
 type Experience = {
 	id: UUID;
@@ -16,5 +17,6 @@ type Experience = {
 	description?: string;
 	fromDate: Date;
 	toDate?: Date;
+	published: boolean;
 };
 export type { Project, Experience };
