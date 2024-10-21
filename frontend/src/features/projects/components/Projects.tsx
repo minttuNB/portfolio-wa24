@@ -32,7 +32,6 @@ export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps
 									/>
 								</label>
 								<button
-									//className={props.isEditMode ? "remove-button" : "remove-button invisible"}
 									className="remove-button"
 									title="Remove project"
 									onClick={() => {
