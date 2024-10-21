@@ -17,7 +17,7 @@ export default function Layout(props: LayoutProps) {
 		<>
 			<header>
 				<Navigation onPageAnchorClicked={PageAnchorClickedHandler}>
-					<label htmlFor="edit-mode-switch" id="edit-mode-switch-wrapper">
+					<label htmlFor="edit-mode-switch" className="switch-wrapper">
 						<span>Edit mode</span>
 						<input
 							type="checkbox"
