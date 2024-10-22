@@ -27,6 +27,9 @@ export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps
 										type="checkbox"
 										onChange={(event) => {
 											console.log("PATCH request to publish a project");
+											let projectToUpdate = { ...project };
+											projectToUpdate.published = !projectToUpdate.published;
+											props.handleProjectMutation("update", projectToUpdate);
 										}}
 										role="switch"
 										className="publish-switch"
