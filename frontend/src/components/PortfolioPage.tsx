@@ -8,7 +8,7 @@ import { PortfolioContextType, usePortfolioContext } from "../contexts/Portfolio
 import Experiences from "../features/experiences/components/Experiences";
 import useExperiences from "../features/experiences/useExperiences";
 export default function PortfolioPage() {
-	const { add, remove, projects, isError, isLoading, error } = useProjects();
+	const { add, update, remove, projects, isError, isLoading, error } = useProjects();
 	const {
 		experiences,
 		isError: isExperienceError,
@@ -19,6 +19,9 @@ export default function PortfolioPage() {
 		switch (action) {
 			case "add":
 				add(project);
+				break;
+			case "update":
+				update(project);
 				break;
 			case "remove":
 				remove(project.id!);
