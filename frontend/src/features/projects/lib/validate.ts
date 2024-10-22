@@ -9,7 +9,10 @@ const projectSchema = z.object({
 	images: z.array(z.string().url()).optional(),
 	categories: z.array(z.string()).optional(),
 	createdAt: z.string().datetime(),
-	published: z.coerce.boolean(),
+	published: z
+		.string()
+		.transform((val) => JSON.parse(val))
+		.pipe(z.boolean()),
 });
 const projectsSchema = z.array(projectSchema);
 function validateProject(data: unknown) {
