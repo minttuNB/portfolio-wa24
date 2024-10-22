@@ -33,7 +33,7 @@ export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps
 										}}
 										role="switch"
 										className="publish-switch"
-										checked={project.published}
+										defaultChecked={project.published}
 									/>
 								</label>
 								<button
