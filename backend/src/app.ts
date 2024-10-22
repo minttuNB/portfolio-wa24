@@ -8,8 +8,8 @@ const app = new Hono();
 app.use("/*", cors());
 app.use("/static/*", serveStatic({ root: "./" }));
 app.get("/api/projects", async (ctx) => {
-	const jsonData = await readFile("./data/projects.json", "utf-8");
-	return ctx.json(JSON.parse(await jsonData) as Project[]);
+	const jsonData = await getProjects();
+	return ctx.json(jsonData);
 });
 app.put("/api/projects", async (ctx) => {
 	let data = await ctx.req.json();
@@ -53,11 +53,9 @@ app.put("/api/projects", async (ctx) => {
 		project.categories = data.categories;
 	}
 	//Update file with new project (TODO: factor out into storage handling functions)
-	let jsonData: Project[] = JSON.parse(await readFile("./data/projects.json", "utf-8"));
+	let jsonData: Project[] = await getProjects();
 	jsonData.push(project);
-	writeFile("./data/projects.json", JSON.stringify(jsonData, null, 2), {
-		encoding: "utf-8",
-	});
+	writeProjects(jsonData);
 	return ctx.json(
 		{
 			message: "Project successfully created",
@@ -66,13 +64,25 @@ app.put("/api/projects", async (ctx) => {
 		201
 	);
 });
+app.patch("/api/projects/:id", async (ctx) => {
+	const projectId = (await ctx.req.param("id")) as UUID;
+	let projectsData = await getProjects();
+	let incomingProjectData = (await ctx.req.json()) as Project;
+	let foundProject = projectsData.find((project) => (project.id = projectId));
+	if (foundProject) {
+		//hardcoded published only
+		foundProject.published = incomingProjectData.published;
+		writeProjects(projectsData);
+		ctx.status(204);
+		return ctx.body(null);
+	}
+	return ctx.json({ message: "The given project ID doesn't match any existing projects." }, 400);
+});
 app.delete("/api/projects/:id", async (ctx) => {
 	const projectId = (await ctx.req.param("id")) as UUID;
-	let jsonData = JSON.parse(await readFile("./data/projects.json", "utf-8")) as Project[];
+	let jsonData = await getProjects();
 	jsonData = jsonData.filter((project) => project.id !== projectId);
-	writeFile("./data/projects.json", JSON.stringify(jsonData, null, 2), {
-		encoding: "utf-8",
-	});
+	writeProjects(jsonData);
 	ctx.status(204);
 	return ctx.body(null);
 });
@@ -80,4 +90,12 @@ app.get("/api/experiences", async (ctx) => {
 	const jsonData = await readFile("./data/experiences.json", "utf-8");
 	return ctx.json(JSON.parse(await jsonData) as Experience[]);
 });
+async function getProjects() {
+	return JSON.parse(await readFile("./data/projects.json", "utf-8")) as Project[];
+}
+function writeProjects(data: Project[]) {
+	writeFile("./data/projects.json", JSON.stringify(data, null, 2), {
+		encoding: "utf-8",
+	});
+}
 export default app;
