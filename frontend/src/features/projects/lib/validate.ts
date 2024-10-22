@@ -9,6 +9,7 @@ const projectSchema = z.object({
 	images: z.array(z.string().url()).optional(),
 	categories: z.array(z.string()).optional(),
 	createdAt: z.string().datetime(),
+	published: z.coerce.boolean(),
 });
 const projectsSchema = z.array(projectSchema);
 function validateProject(data: unknown) {

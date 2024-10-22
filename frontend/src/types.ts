@@ -8,6 +8,7 @@ type ProjectProps = {
 	url?: URL;
 	images?: URL[];
 	categories?: string[];
+	published: boolean;
 };
 type ProjectsProps = {
 	projects: ProjectProps[];
@@ -29,6 +30,7 @@ type CreateProjectFormProps = {
 };
 export const actions = {
 	add: "add",
+	update: "update",
 	remove: "remove",
 };
 
