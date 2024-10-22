@@ -29,6 +29,15 @@ export function useProjects() {
 			await fetchData();
 		}
 	}
+	async function update(project: Partial<ProjectProps>) {
+		try {
+			await api.update(project);
+		} catch (error) {
+			setError("An error has occurred while updating the project.");
+		} finally {
+			await fetchData();
+		}
+	}
 	async function remove(id: ReturnType<typeof crypto.randomUUID>) {
 		try {
 			setLoading(true);
@@ -46,6 +55,7 @@ export function useProjects() {
 
 	return {
 		add,
+		update,
 		remove,
 		get: fetchData,
 		isLoading,
