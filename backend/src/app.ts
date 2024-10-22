@@ -68,7 +68,7 @@ app.patch("/api/projects/:id", async (ctx) => {
 	const projectId = (await ctx.req.param("id")) as UUID;
 	let projectsData = await getProjects();
 	let incomingProjectData = (await ctx.req.json()) as Project;
-	let foundProject = projectsData.find((project) => (project.id = projectId));
+	let foundProject = projectsData.find((project) => project.id === projectId);
 	if (foundProject) {
 		//hardcoded published only
 		foundProject.published = incomingProjectData.published;
