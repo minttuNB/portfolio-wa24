@@ -18,6 +18,7 @@ export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps
 							url={project.url}
 							images={project.images}
 							categories={project.categories}
+							published={project.published}
 						>
 							<div className={props.isEditMode ? "edit-controls" : "edit-controls invisible"}>
 								<label htmlFor="publish-switch" className="switch-wrapper">
@@ -29,6 +30,7 @@ export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps
 										}}
 										role="switch"
 										className="publish-switch"
+										checked={project.published}
 									/>
 								</label>
 								<button
