@@ -12,7 +12,9 @@ async function create(project: Partial<ProjectProps>) {
 	});
 }
 async function read() {
-	const data: ProjectProps[] = await fetch(new URL(`${config.api.url}api/projects`)).then((res) => res.json());
+	const data: ProjectProps[] = await fetch(new URL(`${config.api.url}api/projects`), {
+		credentials: "include",
+	}).then((res) => res.json());
 	const validatedData = validateProjects(data);
 	return validatedData;
 }
