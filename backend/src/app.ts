@@ -5,12 +5,21 @@ import { cors } from "hono/cors";
 import { UUID } from "crypto";
 import { Project } from "./features/projects/types";
 import { Experience } from "./features/experiences/types";
-const app = new Hono();
-app.use("/*", cors());
+import { ContextVariables } from "./types";
+import { authenticate } from "./features/users/lib/middleware";
+const app = new Hono<{ Variables: ContextVariables }>();
+app.use(
+	"/*",
+	cors({
+		origin: "http://localhost:5173",
+		credentials: true,
+	})
+);
 app.use("/static/*", serveStatic({ root: "./" }));
-app.get("/api/projects", async (ctx) => {
+app.get("/api/projects", authenticate(), async (ctx) => {
 	const jsonData = await getProjects();
-	return ctx.json(jsonData);
+	if (ctx.get("user")) return ctx.json(jsonData);
+	else return ctx.json(jsonData.filter((project) => project.published === true));
 });
 app.put("/api/projects", async (ctx) => {
 	let data = await ctx.req.json();
