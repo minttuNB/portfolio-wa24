@@ -1,12 +1,7 @@
-import { UUID } from "../../../types";
+import { z } from "zod";
+import { experienceSchema } from "../lib/validate";
 
-type ExperienceProps = {
-	id: UUID;
-	name: string;
-	description?: string;
-	fromDate: Date;
-	toDate?: Date;
-};
+type ExperienceProps = z.infer<typeof experienceSchema>;
 type ExperiencesProps = {
 	experiences: ExperienceProps[];
 };
