@@ -8,6 +8,7 @@ async function read() {
 	const validatedData = validateExperiences(data);
 	return validatedData;
 }
+// @ts-expect-error
 async function readOne(id: UUID) {
 	const data: ExperienceProps = await fetch(new URL(`${config.api.url}api/experiences/${id}`)).then((res) =>
 		res.json()
