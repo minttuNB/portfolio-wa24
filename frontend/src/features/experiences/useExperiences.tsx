@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { ExperienceProps } from "../../types";
 import api from "./services/api";
+import { ExperienceProps } from "./types";
 export function useExperiences() {
 	const [experiences, setExperiences] = useState<ExperienceProps[]>([]);
 	const [loading, setLoading] = useState(true);

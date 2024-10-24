@@ -1,12 +1,13 @@
 import { FormEvent } from "react";
 import useProjects from "../features/projects/useProjects";
-import { Action, ProjectProps } from "../types";
+import { Action } from "../types";
 import Contact from "./Contact";
 import CreateProjectForm from "./CreateProjectForm";
 import Projects from "../features/projects/components/Projects";
 import { PortfolioContextType, usePortfolioContext } from "../contexts/PortfolioContext";
 import Experiences from "../features/experiences/components/Experiences";
 import useExperiences from "../features/experiences/useExperiences";
+import { ProjectProps } from "../features/projects/types";
 export default function PortfolioPage() {
 	const { add, update, remove, projects, isError, isLoading, error } = useProjects();
 	const {

@@ -1,5 +1,5 @@
 import { getISODateString } from "../../../lib/formatters";
-import { ExperienceProps } from "../../../types";
+import { ExperienceProps } from "../types";
 export default function Experience(props: ExperienceProps) {
 	return (
 		<article>

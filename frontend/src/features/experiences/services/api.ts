@@ -1,6 +1,7 @@
 import config from "../../../config";
+import { UUID } from "../../../types";
 
-async function read(id?: ReturnType<typeof crypto.randomUUID>) {
+async function read(id?: UUID) {
 	if (id) {
 		return fetch(new URL(`${config.api.url}api/experiences/${id}`)).then((res) => res.json());
 	} else {

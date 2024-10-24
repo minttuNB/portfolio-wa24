@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { ProjectProps } from "../../types";
+import { UUID } from "../../types";
 import api from "./services/api";
+import { ProjectProps } from "./types";
 export function useProjects() {
 	const [projects, setProjects] = useState<ProjectProps[]>([]);
 	const [loading, setLoading] = useState(true);
@@ -38,7 +39,7 @@ export function useProjects() {
 			await fetchData();
 		}
 	}
-	async function remove(id: ReturnType<typeof crypto.randomUUID>) {
+	async function remove(id: UUID) {
 		try {
 			setLoading(true);
 			await api.remove(id);

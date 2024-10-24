@@ -1,14 +1,29 @@
 import { z } from "zod";
+import { UUID } from "../../../types";
 
 const projectSchema = z.object({
-	id: z.string().uuid(),
+	id: z
+		.string()
+		.uuid()
+		.transform((val) => val as UUID),
 	name: z.string(),
 	description: z.string().optional(),
-	date: z.string().datetime().optional(),
-	url: z.string().url().optional(),
-	images: z.array(z.string().url()).optional(),
+	date: z.string().datetime().optional().pipe(z.coerce.date()),
+	url: z
+		.string()
+		.url()
+		.transform((val) => new URL(val))
+		.optional(),
+	images: z
+		.array(
+			z
+				.string()
+				.url()
+				.transform((val) => new URL(val))
+		)
+		.optional(),
 	categories: z.array(z.string()).optional(),
-	createdAt: z.string().datetime(),
+	createdAt: z.string().datetime().pipe(z.coerce.date()).optional(),
 	published: z.boolean(),
 });
 const projectsSchema = z.array(projectSchema);

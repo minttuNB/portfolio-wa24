@@ -1,6 +1,7 @@
 import config from "../../../config";
-import { ProjectProps } from "../../../types";
+import { UUID } from "../../../types";
 import { validateProject, validateProjects } from "../lib/validate";
+import { ProjectProps } from "../types";
 
 async function create(project: Partial<ProjectProps>) {
 	return fetch(new URL(`${config.api.url}api/projects`), {
@@ -18,7 +19,7 @@ async function read() {
 	const validatedData = validateProjects(data);
 	return validatedData;
 }
-async function readOne(id: ReturnType<typeof crypto.randomUUID>) {
+async function readOne(id: UUID) {
 	const data: ProjectProps = await fetch(new URL(`${config.api.url}api/projects/${id}`)).then((res) => res.json());
 	const validatedData = validateProject(data);
 	return validatedData;
@@ -32,7 +33,7 @@ async function update(project: Partial<ProjectProps>) {
 		body: JSON.stringify(project),
 	});
 }
-async function remove(id: ReturnType<typeof crypto.randomUUID>) {
+async function remove(id: UUID) {
 	return fetch(new URL(`${config.api.url}api/projects/${id}`), {
 		method: "DELETE",
 	});

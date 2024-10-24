@@ -1,5 +1,5 @@
+import { ProjectProps, ProjectsProps } from "../types";
 import Project from "./Project";
-import { ProjectProps, ProjectsProps } from "../../../types";
 import { PropsWithChildren } from "react";
 
 export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps>>) {
@@ -19,14 +19,14 @@ export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps
 							images={project.images}
 							categories={project.categories}
 							published={project.published}
+							createdAt={project.createdAt}
 						>
 							<div className={props.isEditMode ? "edit-controls" : "edit-controls invisible"}>
 								<label htmlFor="publish-switch" className="switch-wrapper">
 									<span>Publish</span>
 									<input
 										type="checkbox"
-										onChange={(event) => {
-											console.log("PATCH request to publish a project");
+										onChange={() => {
 											let projectToUpdate = { ...project };
 											projectToUpdate.published = !projectToUpdate.published;
 											props.handleProjectMutation("update", projectToUpdate);
