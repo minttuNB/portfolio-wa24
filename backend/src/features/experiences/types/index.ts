@@ -1,15 +1,7 @@
-import { UUID } from "crypto";
+import { z } from "zod";
+import { experienceSchema } from "../lib/validate";
 
-type Experience = {
-	id: UUID;
-	name: string;
-	description?: string;
-	fromDate: Date;
-	toDate?: Date;
-	createdAt: Date;
-	updatedAt?: Date;
-	published: boolean;
-};
+type Experience = z.infer<typeof experienceSchema>;
 type DbExperience = {
 	id: string;
 	name: string;
