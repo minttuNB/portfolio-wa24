@@ -21,7 +21,6 @@ const createProjects = async () => {
 	const projects = projectsSchema.parse(JSON.parse(await readFile("data/projects.json", "utf-8")));
 	await Promise.all(
 		projects.map(async (project) => {
-			console.log(projectToDb(project));
 			await prisma.project.create({
 				data: {
 					...projectToDb(project),
