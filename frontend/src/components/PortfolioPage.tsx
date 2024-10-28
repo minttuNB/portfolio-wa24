@@ -45,10 +45,13 @@ export default function PortfolioPage() {
 		let project: Partial<ProjectProps> = {
 			name: formData.get("name") as string,
 			description: (formData.get("description") as string) || undefined,
-			date: new Date(formData.get("date") as string),
 			images: [],
 			categories: [formData.get("category") as string],
 		};
+		let date = new Date(formData.get("date") as string);
+		if (date.toString() !== "Invalid Date") {
+			project.date = date;
+		}
 		try {
 			project.url = new URL(formData.get("url") as string);
 		} catch (error) {}
