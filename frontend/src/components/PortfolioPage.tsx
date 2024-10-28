@@ -8,6 +8,7 @@ import { PortfolioContextType, usePortfolioContext } from "../contexts/Portfolio
 import Experiences from "../features/experiences/components/Experiences";
 import useExperiences from "../features/experiences/hooks/useExperiences";
 import { ProjectProps } from "../features/projects/types";
+import { projectSchema } from "../features/projects/lib/validate";
 export default function PortfolioPage() {
 	const { add, update, remove, publish, unpublish, projects, isError, isLoading, error } = useProjects();
 	const {
@@ -42,22 +43,25 @@ export default function PortfolioPage() {
 		const form = event.target as HTMLFormElement | null;
 		if (!form) return;
 		const formData = new FormData(form);
-		let project: Partial<ProjectProps> = {
-			name: formData.get("name") as string,
-			description: (formData.get("description") as string) || undefined,
-			images: [],
-			categories: [formData.get("category") as string],
-		};
-		let date = new Date(formData.get("date") as string);
-		if (date.toString() !== "Invalid Date") {
-			project.date = date;
+		let project;
+		try {
+			project = projectSchema
+				.partial({ id: true, description: true, date: true, images: true, url: true, published: true })
+				.parse({
+					name: formData.get("name")?.toString(),
+					description: formData.get("description")?.toString(),
+					date:
+						formData.get("date") !== ""
+							? new Date(formData.get("date")!.toString()).toISOString()
+							: undefined,
+					url: formData.get("url") ? formData.get("url")?.toString() : undefined,
+					images: formData.get("image-url") ? [formData.get("image-url")?.toString()] : [],
+					categories: formData.get("category") ? [formData.get("category")?.toString()] : [],
+				});
+		} catch (error) {
+			alert("An error has occured while creating the project: invalid project data.");
+			return;
 		}
-		try {
-			project.url = new URL(formData.get("url") as string);
-		} catch (error) {}
-		try {
-			project.images = [new URL(formData.get("image-url") as string)];
-		} catch (error) {}
 		HandleProjectMutation("add", project);
 	}
 	function MessageSentHandler(event: FormEvent<HTMLFormElement>): void {
