@@ -5,13 +5,13 @@ export const fromDb = (project: DbProject) => {
 	return validateProject({
 		id: project.id,
 		name: project.name,
-		description: project.description ?? null,
-		date: project.date ?? null,
-		url: project.url ?? null,
-		images: project.images ?? null,
-		categories: project.categories ?? null,
-		createdAt: project.created_at,
-		updatedAt: project.updated_at ?? null,
+		description: project.description ?? undefined,
+		date: project.date ? project.date?.toISOString() : undefined,
+		url: project.url ?? undefined,
+		images: project.images ? JSON.parse(project.images) : undefined,
+		categories: project.categories ? JSON.parse(project.categories) : undefined,
+		createdAt: project.created_at.toISOString(),
+		updatedAt: project.updated_at ? project.updated_at?.toISOString() : undefined,
 		published: project.published,
 	});
 };
