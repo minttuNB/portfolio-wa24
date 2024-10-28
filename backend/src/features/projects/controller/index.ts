@@ -14,7 +14,7 @@ export const createProjectController = (projectService: ProjectService) => {
 			if (user && user.role === "admin") {
 				return ctx.json(result);
 			} else {
-				return ctx.json(result.data?.filter((project) => project.published));
+				return ctx.json({ ...result, data: result.data?.filter((project) => project.published !== false) });
 			}
 		} else {
 			return ctx.json(result, result.error.code);
