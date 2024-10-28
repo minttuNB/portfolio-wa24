@@ -11,7 +11,7 @@ export default function Project(props: Readonly<PropsWithChildren<ProjectProps>>
 			)}
 			<section>
 				<h2>{props.name}</h2>
-				{props.description ? <p>{props.description}</p> : <i>No description provided</i>}
+				{props.description ? <p contentEditable>{props.description}</p> : <i>No description provided</i>}
 				{props.url ? (
 					<a className="link-button" href={props.url?.toString()}>
 						Learn more
