@@ -19,7 +19,6 @@ async function read() {
 			"Content-Type": "application/json",
 		},
 	}).then((res) => res.json());
-	console.log(data);
 	if (data.success === true) {
 		const validatedData = validateProjects(data.data);
 		return validatedData;
