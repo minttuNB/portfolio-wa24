@@ -9,7 +9,7 @@ import Experiences from "../features/experiences/components/Experiences";
 import useExperiences from "../features/experiences/hooks/useExperiences";
 import { ProjectProps } from "../features/projects/types";
 export default function PortfolioPage() {
-	const { add, update, remove, projects, isError, isLoading, error } = useProjects();
+	const { add, update, remove, publish, unpublish, projects, isError, isLoading, error } = useProjects();
 	const {
 		experiences,
 		isError: isExperienceError,
@@ -26,6 +26,12 @@ export default function PortfolioPage() {
 				break;
 			case "remove":
 				remove(project.id!);
+				break;
+			case "publish":
+				publish(project.id!);
+				break;
+			case "unpublish":
+				unpublish(project.id!);
 				break;
 			default:
 				break;

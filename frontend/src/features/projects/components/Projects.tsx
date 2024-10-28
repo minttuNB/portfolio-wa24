@@ -27,9 +27,10 @@ export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps
 									<input
 										type="checkbox"
 										onChange={() => {
-											let projectToUpdate = { ...project };
-											projectToUpdate.published = !projectToUpdate.published;
-											props.handleProjectMutation("update", projectToUpdate);
+											props.handleProjectMutation(
+												project.published ? "unpublish" : "publish",
+												project
+											);
 										}}
 										role="switch"
 										className="publish-switch"

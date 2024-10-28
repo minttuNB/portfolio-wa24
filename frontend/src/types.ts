@@ -7,6 +7,8 @@ export const actions = {
 	add: "add",
 	update: "update",
 	remove: "remove",
+	publish: "publish",
+	unpublish: "unpublish",
 };
 
 type Action = (typeof actions)[keyof typeof actions];
