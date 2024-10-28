@@ -16,18 +16,18 @@ export const fromDb = (project: DbProject) => {
 	});
 };
 export const toDb = (project: Project) => {
-	return {
+	return dbProjectSchema.parse({
 		id: project.id,
 		name: project.name,
 		description: project.description ?? null,
-		date: project.date ?? null,
+		date: project.date ? project.date.toISOString() : null,
 		url: project.url ? project.url?.toString() : null,
 		images: project.images ? JSON.stringify(project.images) : null,
 		categories: project.categories ? JSON.stringify(project.categories) : null,
-		created_at: project.createdAt,
-		updated_at: project.updatedAt ?? null,
+		created_at: project.createdAt.toISOString(),
+		updated_at: project.updatedAt ? project.updatedAt.toISOString() : null,
 		published: project.published,
-	};
+	});
 };
 export const partialToDb = (project: Partial<Project>) => {
 	const modifiedParts = {} as DbProject;

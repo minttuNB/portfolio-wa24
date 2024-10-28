@@ -36,8 +36,8 @@ const dbProjectSchema = z.object({
 	url: z.string().url().nullable(),
 	images: z.string().nullable(),
 	categories: z.string().nullable(),
-	createdAt: z.string().datetime().pipe(z.coerce.date()),
-	updatedAt: z.string().datetime().pipe(z.coerce.date()).nullable(),
+	created_at: z.string().datetime().pipe(z.coerce.date()),
+	updated_at: z.string().datetime().pipe(z.coerce.date()).nullable(),
 	published: z.boolean(),
 });
 function validateProject(data: unknown) {
