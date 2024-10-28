@@ -17,7 +17,12 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
 	return {
 		create: async (data: Project) => {
 			try {
-				data = projectSchema.parse({ ...data, createdAt: new Date() });
+				data = projectSchema.parse({
+					...data,
+					id: crypto.randomUUID(),
+					createdAt: new Date().toISOString(),
+					published: false,
+				});
 				return projectRepository.create(data);
 			} catch (error) {
 				const response: Result<Project> = {
@@ -63,7 +68,7 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
 		},
 		remove: async (id: UUID) => {
 			try {
-				id = validateUUID(id);
+				id = validateUUID({ id });
 				return projectRepository.remove(id);
 			} catch (error) {
 				const response: Result<Project> = {
@@ -78,7 +83,7 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
 		},
 		publish: async (id: UUID) => {
 			try {
-				id = validateUUID(id);
+				id = validateUUID({ id });
 				return projectRepository.publish(id);
 			} catch (error) {
 				const response: Result<Project> = {
@@ -93,7 +98,7 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
 		},
 		unpublish: async (id: UUID) => {
 			try {
-				id = validateUUID(id);
+				id = validateUUID({ id });
 				return projectRepository.unpublish(id);
 			} catch (error) {
 				const response: Result<Project> = {
