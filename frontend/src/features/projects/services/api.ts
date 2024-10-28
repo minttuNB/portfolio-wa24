@@ -26,7 +26,6 @@ async function read() {
 		throw new Error(data.error.message);
 	}
 }
-// @ts-expect-error
 async function readOne(id: UUID) {
 	const data = await fetch(new URL(`${config.api.url}api/v1/projects/${id}`)).then((res) => res.json());
 	if (data.success === true) {
@@ -69,6 +68,7 @@ async function remove(id: UUID) {
 export default {
 	create,
 	read,
+	readOne,
 	update,
 	publish,
 	unpublish,

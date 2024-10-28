@@ -3,7 +3,7 @@
 	"scripts": {
 		"dev": "tsx watch --env-file=.env src/index.ts",
 		"prisma:init": "prisma init",
-		"prisma:migrate": "prisma migrate dev",
+		"prisma:migrate": "prisma migrate dev --name init",
 		"prisma:generate": "prisma generate",
 		"prisma:seed": "prisma db seed",
 		"prisma:push": "prisma db push"

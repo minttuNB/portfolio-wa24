@@ -4,9 +4,8 @@ A portfolio project created during the Web Applications course at Østfold Unive
 
 ## Setup steps
 
-1. Run `npm install` in frontend and backend folders
-2. Run `npm run prisma:init` in the backend folder
-3. Run `npm run prisma:migrate` in the backend folder
+1. Run `npm run first-time-setup" in the root folder
+2. Rename `.env-example` to `.env` in the backend folder
 
 ## Running the app
 

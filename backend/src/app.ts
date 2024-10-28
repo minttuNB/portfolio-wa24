@@ -1,21 +1,18 @@
 import { serveStatic } from "@hono/node-server/serve-static";
-import { readFile } from "fs/promises";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { Experience } from "./features/experiences/types";
 import { projectController } from "./features/projects/controller";
+import { experienceController } from "./features/experiences/controller";
+import { env } from "./lib/env";
 const app = new Hono();
 app.use(
 	"/*",
 	cors({
-		origin: "http://localhost:5173",
+		origin: env.FRONTEND_URL,
 		credentials: true,
 	})
 );
 app.use("/static/*", serveStatic({ root: "./" }));
 app.route("/api/v1/projects", projectController);
-app.get("/api/experiences", async (ctx) => {
-	const jsonData = await readFile("./data/experiences.json", "utf-8");
-	return ctx.json(JSON.parse(await jsonData) as Experience[]);
-});
+app.route("/api/v1/experiences", experienceController);
 export default app;
