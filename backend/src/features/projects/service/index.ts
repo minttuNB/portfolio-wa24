@@ -1,8 +1,9 @@
 import { UUID } from "crypto";
 import { projectSchema, validateUUID } from "../lib/validate";
-import { ProjectRepository } from "../repository";
+import { createProjectRepository, ProjectRepository } from "../repository";
 import { Project } from "../types";
 import { Result } from "../../../types";
+import prisma from "../../../db/client";
 export interface ProjectService {
 	create: (data: Project) => Promise<Result<Project>>;
 	list: () => Promise<Result<Project[]>>;
@@ -89,3 +90,4 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
 		},
 	};
 };
+export const projectService = createProjectService(createProjectRepository(prisma!));
