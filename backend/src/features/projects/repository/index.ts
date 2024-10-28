@@ -15,7 +15,7 @@ export interface ProjectRepository {
 export const createProjectRepository = (db: DB): ProjectRepository => {
 	const create = async (data: Project) => {
 		try {
-			db.project.create({
+			await db.project.create({
 				data: toDb(data),
 			});
 			const response: Result<Project> = {
@@ -81,7 +81,7 @@ export const createProjectRepository = (db: DB): ProjectRepository => {
 	};
 	const update = async (id: UUID, data: Partial<Project>) => {
 		try {
-			db.project.update({
+			await db.project.update({
 				where: {
 					id,
 				},
@@ -130,7 +130,7 @@ export const createProjectRepository = (db: DB): ProjectRepository => {
 	};
 	const handlePublishing = async (id: UUID, value: boolean) => {
 		try {
-			db.project.update({
+			await db.project.update({
 				where: {
 					id,
 				},
