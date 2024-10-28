@@ -26,7 +26,10 @@ export const createProjectRepository = (db: DB): ProjectRepository => {
 		} catch (error) {
 			const response: Result<Project> = {
 				success: false,
-				message: "Error creating a project",
+				error: {
+					code: 500,
+					message: "Error creating the project: Internal server error",
+				},
 			};
 			return response;
 		}
@@ -41,9 +44,13 @@ export const createProjectRepository = (db: DB): ProjectRepository => {
 			};
 			return response;
 		} catch (error) {
+			console.log(JSON.stringify(error, null, 2));
 			const response: Result<Project[]> = {
 				success: false,
-				message: "Error creating a project",
+				error: {
+					code: 500,
+					message: "Error listing projects: Internal server error",
+				},
 			};
 			return response;
 		}
@@ -64,7 +71,10 @@ export const createProjectRepository = (db: DB): ProjectRepository => {
 		} catch (error) {
 			const response: Result<Project> = {
 				success: false,
-				message: "Error fetching the project: project not found",
+				error: {
+					code: 404,
+					message: "Error fetching the project: Project not found",
+				},
 			};
 			return response;
 		}
@@ -87,7 +97,10 @@ export const createProjectRepository = (db: DB): ProjectRepository => {
 		} catch (error) {
 			const response: Result<Project> = {
 				success: false,
-				message: "Error updating the project",
+				error: {
+					code: 500,
+					message: "Error updating the project: Internal server error",
+				},
 			};
 			return response;
 		}
@@ -107,7 +120,10 @@ export const createProjectRepository = (db: DB): ProjectRepository => {
 		} catch (error) {
 			const response: Result<Project> = {
 				success: false,
-				message: "Error removing the project",
+				error: {
+					code: 404,
+					message: "Error removing the project: Project not found",
+				},
 			};
 			return response;
 		}
@@ -130,7 +146,12 @@ export const createProjectRepository = (db: DB): ProjectRepository => {
 		} catch (error) {
 			const response: Result<Project> = {
 				success: false,
-				message: value === true ? "Error publishing the project" : "Error unpublishing the project",
+				error: {
+					code: 404,
+					message: `${
+						value === true ? "Error publishing the project" : "Error unpublishing the project"
+					}: project not found`,
+				},
 			};
 			return response;
 		}

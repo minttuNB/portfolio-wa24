@@ -22,7 +22,10 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
 			} catch (error) {
 				const response: Result<Project> = {
 					success: false,
-					message: "Error creating the project: invalid project data",
+					error: {
+						code: 400,
+						message: "Error creating the project: invalid project data",
+					},
 				};
 				return response;
 			}
@@ -35,7 +38,10 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
 			} catch (error) {
 				const response: Result<Project> = {
 					success: false,
-					message: "Error fetching the project: invalid project id",
+					error: {
+						code: 400,
+						message: "Error fetching the project: invalid project id",
+					},
 				};
 				return response;
 			}
@@ -47,7 +53,10 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
 			} catch (error) {
 				const response: Result<Project> = {
 					success: false,
-					message: "Error updating the project: invalid project id",
+					error: {
+						code: 400,
+						message: "Error updating the project: invalid project id",
+					},
 				};
 				return response;
 			}
@@ -59,7 +68,10 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
 			} catch (error) {
 				const response: Result<Project> = {
 					success: false,
-					message: "Error removing the project: invalid project id",
+					error: {
+						code: 400,
+						message: "Error removing the project: invalid project id",
+					},
 				};
 				return response;
 			}
@@ -71,7 +83,10 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
 			} catch (error) {
 				const response: Result<Project> = {
 					success: false,
-					message: "Error publishing the project: invalid project id",
+					error: {
+						code: 400,
+						message: "Error publishing the project: invalid project id",
+					},
 				};
 				return response;
 			}
@@ -83,7 +98,10 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
 			} catch (error) {
 				const response: Result<Project> = {
 					success: false,
-					message: "Error unpublishing the project: invalid project id",
+					error: {
+						code: 400,
+						message: "Error unpublishing the project: invalid project id",
+					},
 				};
 				return response;
 			}
