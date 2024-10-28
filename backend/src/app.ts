@@ -21,7 +21,7 @@ app.get("/api/projects", authenticate(), async (ctx) => {
 	if (ctx.get("user")) return ctx.json(jsonData);
 	else return ctx.json(jsonData.filter((project) => project.published === true));
 });
-app.put("/api/projects", async (ctx) => {
+app.post("/api/projects", async (ctx) => {
 	let data = await ctx.req.json();
 	let project: Project;
 	//Validate fields and build object
