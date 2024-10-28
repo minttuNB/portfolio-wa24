@@ -4,8 +4,8 @@ import { validateProject, validateProjects } from "../lib/validate";
 import { ProjectProps } from "../types";
 
 async function create(project: Partial<ProjectProps>) {
-	return fetch(new URL(`${config.api.url}api/projects`), {
-		method: "PUT",
+	return fetch(new URL(`${config.api.url}api/v1/projects`), {
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
@@ -13,23 +13,31 @@ async function create(project: Partial<ProjectProps>) {
 	});
 }
 async function read() {
-	const data: ProjectProps[] = await fetch(new URL(`${config.api.url}api/projects`), {
+	const data = await fetch(new URL(`${config.api.url}api/v1/projects`), {
 		credentials: "include",
 		headers: {
 			"Content-Type": "application/json",
 		},
 	}).then((res) => res.json());
-	const validatedData = validateProjects(data);
-	return validatedData;
+	if (data.success === true) {
+		const validatedData = validateProjects(data.data);
+		return validatedData;
+	} else if (data.success === false) {
+		throw new Error(data.error.message);
+	}
 }
 // @ts-expect-error
 async function readOne(id: UUID) {
-	const data: ProjectProps = await fetch(new URL(`${config.api.url}api/projects/${id}`)).then((res) => res.json());
-	const validatedData = validateProject(data);
-	return validatedData;
+	const data = await fetch(new URL(`${config.api.url}api/v1/projects/${id}`)).then((res) => res.json());
+	if (data.success === true) {
+		const validatedData = validateProject(data.data);
+		return validatedData;
+	} else if (data.success === false) {
+		throw new Error(data.error.message);
+	}
 }
 async function update(project: Partial<ProjectProps>) {
-	return fetch(new URL(`${config.api.url}api/projects/${project.id}`), {
+	return fetch(new URL(`${config.api.url}api/v1/projects/${project.id}`), {
 		method: "PATCH",
 		headers: {
 			"Content-Type": "application/json",
@@ -37,8 +45,24 @@ async function update(project: Partial<ProjectProps>) {
 		body: JSON.stringify(project),
 	});
 }
+async function publish(id: UUID) {
+	return fetch(new URL(`${config.api.url}api/v1/projects/${id}/publish`), {
+		method: "PATCH",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+}
+async function unpublish(id: UUID) {
+	return fetch(new URL(`${config.api.url}api/v1/projects/${id}/unpublish`), {
+		method: "PATCH",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+}
 async function remove(id: UUID) {
-	return fetch(new URL(`${config.api.url}api/projects/${id}`), {
+	return fetch(new URL(`${config.api.url}api/v1/projects/${id}`), {
 		method: "DELETE",
 	});
 }
@@ -46,5 +70,7 @@ export default {
 	create,
 	read,
 	update,
+	publish,
+	unpublish,
 	remove,
 };

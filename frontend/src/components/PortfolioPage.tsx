@@ -1,15 +1,15 @@
 import { FormEvent } from "react";
-import useProjects from "../features/projects/useProjects";
+import useProjects from "../features/projects/hooks/useProjects";
 import { Action } from "../types";
 import Contact from "./Contact";
 import CreateProjectForm from "./CreateProjectForm";
 import Projects from "../features/projects/components/Projects";
 import { PortfolioContextType, usePortfolioContext } from "../contexts/PortfolioContext";
 import Experiences from "../features/experiences/components/Experiences";
-import useExperiences from "../features/experiences/useExperiences";
+import useExperiences from "../features/experiences/hooks/useExperiences";
 import { ProjectProps } from "../features/projects/types";
 export default function PortfolioPage() {
-	const { add, update, remove, projects, isError, isLoading, error } = useProjects();
+	const { add, update, remove, publish, unpublish, projects, isError, isLoading, error } = useProjects();
 	const {
 		experiences,
 		isError: isExperienceError,
@@ -27,6 +27,12 @@ export default function PortfolioPage() {
 			case "remove":
 				remove(project.id!);
 				break;
+			case "publish":
+				publish(project.id!);
+				break;
+			case "unpublish":
+				unpublish(project.id!);
+				break;
 			default:
 				break;
 		}
@@ -39,10 +45,13 @@ export default function PortfolioPage() {
 		let project: Partial<ProjectProps> = {
 			name: formData.get("name") as string,
 			description: (formData.get("description") as string) || undefined,
-			date: new Date(formData.get("date") as string),
 			images: [],
 			categories: [formData.get("category") as string],
 		};
+		let date = new Date(formData.get("date") as string);
+		if (date.toString() !== "Invalid Date") {
+			project.date = date;
+		}
 		try {
 			project.url = new URL(formData.get("url") as string);
 		} catch (error) {}

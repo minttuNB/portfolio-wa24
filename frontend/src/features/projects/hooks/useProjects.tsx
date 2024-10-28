@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { UUID } from "../../types";
-import api from "./services/api";
-import { ProjectProps } from "./types";
+import { UUID } from "../../../types";
+import api from "../services/api";
+import { ProjectProps } from "../types";
 export function useProjects() {
 	const [projects, setProjects] = useState<ProjectProps[]>([]);
 	const [loading, setLoading] = useState(true);
@@ -11,7 +11,7 @@ export function useProjects() {
 	const fetchData = useCallback(async () => {
 		try {
 			setLoading(true);
-			const projects: ProjectProps[] = await api.read();
+			const projects = await api.read();
 			setProjects(projects ?? []);
 		} catch (error) {
 			setError("An error has occurred while fetching the project data.");
@@ -39,6 +39,24 @@ export function useProjects() {
 			await fetchData();
 		}
 	}
+	async function publish(id: UUID) {
+		try {
+			await api.publish(id);
+		} catch (error) {
+			setError("An error has occurred while publishing the project.");
+		} finally {
+			await fetchData();
+		}
+	}
+	async function unpublish(id: UUID) {
+		try {
+			await api.unpublish(id);
+		} catch (error) {
+			setError("An error has occurred while unpublishing the project.");
+		} finally {
+			await fetchData();
+		}
+	}
 	async function remove(id: UUID) {
 		try {
 			setLoading(true);
@@ -58,6 +76,8 @@ export function useProjects() {
 		add,
 		update,
 		remove,
+		publish,
+		unpublish,
 		get: fetchData,
 		isLoading,
 		isError,
