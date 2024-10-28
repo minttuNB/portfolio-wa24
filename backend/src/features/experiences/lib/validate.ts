@@ -31,4 +31,14 @@ function validateExperience(data: unknown) {
 function validateExperiences(data: unknown) {
 	return experiencesSchema.parse(data);
 }
-export { experienceSchema, experiencesSchema, dbExperienceSchema, validateExperience, validateExperiences };
+function validateUUID(data: unknown) {
+	return experienceSchema.pick({ id: true }).parse(data).id;
+}
+export {
+	experienceSchema,
+	experiencesSchema,
+	dbExperienceSchema,
+	validateExperience,
+	validateExperiences,
+	validateUUID,
+};
