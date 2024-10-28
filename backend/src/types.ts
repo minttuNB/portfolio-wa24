@@ -5,7 +5,7 @@ type ContextVariables = {
 };
 export type Success<T> = {
 	success: true;
-	data: T;
+	data: T | null;
 };
 export type Failure = {
 	success: false;
