@@ -16,6 +16,8 @@ model Experience {
     created_at  DateTime
     updated_at  DateTime?
     published   Boolean
+
+    @@map("experiences")
 }
 
 model Project {
@@ -29,4 +31,6 @@ model Project {
     created_at  DateTime
     updated_at  DateTime?
     published   Boolean
+
+    @@map("projects")
 }
