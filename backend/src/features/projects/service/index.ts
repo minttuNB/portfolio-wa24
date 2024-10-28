@@ -21,7 +21,7 @@ export const createProjectService = (projectRepository: ProjectRepository) => {
 					...data,
 					id: crypto.randomUUID(),
 					createdAt: new Date().toISOString(),
-					published: false,
+					published: true, //true by default due to unfinished authentication system - unpublished invisible to guests
 				});
 				return projectRepository.create(data);
 			} catch (error) {
