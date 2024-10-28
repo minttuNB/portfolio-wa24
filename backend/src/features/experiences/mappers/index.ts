@@ -18,10 +18,10 @@ export const toDb = (experience: Experience) => {
 		id: experience.id,
 		name: experience.name,
 		description: experience.description ?? null,
-		from_date: experience.fromDate,
-		to_date: experience.toDate ?? null,
-		created_at: experience.createdAt,
-		updated_at: experience.updatedAt ?? null,
+		from_date: experience.fromDate.toISOString(),
+		to_date: experience.toDate ? experience.toDate.toISOString() : null,
+		created_at: experience.createdAt.toISOString(),
+		updated_at: experience.updatedAt ? experience.updatedAt.toISOString() : null,
 		published: experience.published,
 	});
 };

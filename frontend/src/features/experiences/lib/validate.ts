@@ -10,9 +10,9 @@ const experienceSchema = z.object({
 	description: z.string().optional(),
 	fromDate: z.string().datetime().pipe(z.coerce.date()),
 	toDate: z.string().datetime().pipe(z.coerce.date()).optional(),
-	createdAt: z.string().datetime().pipe(z.coerce.date()).optional(),
+	createdAt: z.string().datetime().pipe(z.coerce.date()),
 	updatedAt: z.string().datetime().pipe(z.coerce.date()).optional(),
-	published: z.boolean().optional(),
+	published: z.boolean(),
 });
 const experiencesSchema = z.array(experienceSchema);
 function validateExperience(data: unknown) {
