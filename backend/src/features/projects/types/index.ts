@@ -1,14 +1,5 @@
-import { UUID } from "crypto";
+import { z } from "zod";
+import { projectSchema } from "../lib/validate";
 
-type Project = {
-	id: UUID;
-	name: string;
-	description?: string;
-	date?: Date;
-	url?: URL;
-	images?: URL[];
-	categories?: string[];
-	createdAt: Date;
-	published: boolean;
-};
+type Project = z.infer<typeof projectSchema>;
 export type { Project };

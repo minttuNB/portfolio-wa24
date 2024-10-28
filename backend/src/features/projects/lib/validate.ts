@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { UUID } from "../../../types";
+import { UUID } from "crypto";
 
 const projectSchema = z.object({
 	id: z
@@ -23,7 +23,7 @@ const projectSchema = z.object({
 		)
 		.optional(),
 	categories: z.array(z.string()).optional(),
-	createdAt: z.string().datetime().pipe(z.coerce.date()).optional(),
+	createdAt: z.string().datetime().pipe(z.coerce.date()),
 	updatedAt: z.string().datetime().pipe(z.coerce.date()).optional(),
 	published: z.boolean(),
 });
