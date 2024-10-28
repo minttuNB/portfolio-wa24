@@ -1,7 +1,8 @@
+import { validateExperience } from "../lib/validate";
 import { DbExperience, Experience } from "../types";
 
 export const fromDb = (experience: DbExperience) => {
-	return {
+	return validateExperience({
 		id: experience.id,
 		name: experience.name,
 		description: experience.description ?? null,
@@ -10,7 +11,7 @@ export const fromDb = (experience: DbExperience) => {
 		createdAt: new Date(experience.created_at),
 		updatedAt: experience.updated_at ? new Date(experience.updated_at) : null,
 		published: experience.published,
-	};
+	});
 };
 export const toDb = (experience: Experience) => {
 	return {
