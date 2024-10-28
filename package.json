@@ -9,6 +9,7 @@
 	},
 	"devDependencies": {},
 	"scripts": {
+		"first-time-setup": "cd frontend && npm i && cd ../backend && npm i && npm run prisma:generate && npm run prisma:migrate",
 		"dev:frontend": "cd frontend && npm run dev",
 		"dev:backend": "cd backend && npm run dev",
 		"build": "tsc && vite build",
