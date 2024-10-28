@@ -5,7 +5,7 @@ import { ProjectProps } from "../types";
 
 async function create(project: Partial<ProjectProps>) {
 	return fetch(new URL(`${config.api.url}api/v1/projects`), {
-		method: "PUT",
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
