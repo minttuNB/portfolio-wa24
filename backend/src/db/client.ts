@@ -14,3 +14,4 @@ if (env.NODE_ENV === "production") {
 	prisma = globalWithPrisma.prisma;
 }
 export default prisma;
+export type DB = typeof prisma;
