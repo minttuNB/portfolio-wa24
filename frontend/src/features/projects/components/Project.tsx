@@ -4,7 +4,7 @@ import { ProjectProps } from "../types";
 export default function Project(props: Readonly<PropsWithChildren<ProjectProps>>) {
 	return (
 		<article>
-			{!props.images ? (
+			{!props.images || props.images.length == 0 ? (
 				<img src="https://via.placeholder.com/300" alt={props.name}></img>
 			) : (
 				<img src={props.images[0].toString()} alt={props.name}></img>

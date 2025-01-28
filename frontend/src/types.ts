@@ -1,36 +1,15 @@
 import { FormEvent } from "react";
-
-type ProjectProps = {
-	id: ReturnType<typeof crypto.randomUUID>;
-	name: string;
-	description?: string;
-	date?: Date;
-	url?: URL;
-	images?: URL[];
-	categories?: string[];
-};
-type ProjectsProps = {
-	projects: ProjectProps[];
-	handleProjectMutation: (action: Action, project: ProjectProps) => void;
-	isEditMode: boolean;
-};
-type ExperienceProps = {
-	id: ReturnType<typeof crypto.randomUUID>;
-	name: string;
-	description?: string;
-	fromDate: Date;
-	toDate?: Date;
-};
-type ExperiencesProps = {
-	experiences: ExperienceProps[];
-};
+type UUID = ReturnType<typeof crypto.randomUUID> | `${string}-${string}-${string}-${string}-${string}`;
 type CreateProjectFormProps = {
 	onCreateProjectFormSubmitted: (event: FormEvent<HTMLFormElement>) => void;
 };
 export const actions = {
 	add: "add",
+	update: "update",
 	remove: "remove",
+	publish: "publish",
+	unpublish: "unpublish",
 };
 
 type Action = (typeof actions)[keyof typeof actions];
-export type { ProjectProps, ProjectsProps, ExperienceProps, ExperiencesProps, CreateProjectFormProps, Action };
+export type { UUID, CreateProjectFormProps, Action };

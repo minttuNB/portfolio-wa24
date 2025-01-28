@@ -1,5 +1,5 @@
-import Project from "./Project";
 import { ProjectProps, ProjectsProps } from "../types";
+import Project from "./Project";
 import { PropsWithChildren } from "react";
 
 export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps>>) {
@@ -18,17 +18,36 @@ export default function Projects(props: Readonly<PropsWithChildren<ProjectsProps
 							url={project.url}
 							images={project.images}
 							categories={project.categories}
+							published={project.published}
+							createdAt={project.createdAt}
 						>
-							<button
-								className={props.isEditMode ? "remove-button" : "remove-button invisible"}
-								title="Remove project"
-								onClick={() => {
-									if (confirm(`Do you really want to remove the project ${project.name}?`))
-										props.handleProjectMutation("remove", project);
-								}}
-							>
-								X
-							</button>
+							<div className={props.isEditMode ? "edit-controls" : "edit-controls invisible"}>
+								<label htmlFor="publish-switch" className="switch-wrapper">
+									<span>Publish</span>
+									<input
+										type="checkbox"
+										onChange={() => {
+											props.handleProjectMutation(
+												project.published ? "unpublish" : "publish",
+												project
+											);
+										}}
+										role="switch"
+										className="publish-switch"
+										defaultChecked={project.published}
+									/>
+								</label>
+								<button
+									className="remove-button"
+									title="Remove project"
+									onClick={() => {
+										if (confirm(`Do you really want to remove the project ${project.name}?`))
+											props.handleProjectMutation("remove", project);
+									}}
+								>
+									X
+								</button>
+							</div>
 						</Project>
 					))
 				) : (

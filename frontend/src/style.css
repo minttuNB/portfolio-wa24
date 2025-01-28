@@ -23,10 +23,10 @@ a {
 	font-weight: 500;
 	color: var(--accent-color);
 	text-decoration: inherit;
-}
-a:hover {
-	color: var(--accent-color);
-	cursor: pointer;
+	&:hover {
+		color: var(--accent-color);
+		cursor: pointer;
+	}
 }
 body {
 	margin: 0;
@@ -155,12 +155,12 @@ input[type="submit"],
 	padding: 1rem;
 	background: var(--lighter-background-no-alpha);
 	color: var(--text-color);
-	:hover {
+	&:hover {
 		border-color: var(--accent-color);
 		color: var(--accent-color);
 	}
-	:focus,
-	:focus-visible {
+	&:focus,
+	&:focus-visible {
 		outline: 4px auto -webkit-focus-ring-color;
 	}
 }
@@ -190,8 +190,9 @@ input {
 .invisible {
 	visibility: hidden;
 	display: none;
+	opacity: 0;
 }
-#edit-mode-switch-wrapper {
+.switch-wrapper {
 	display: flex;
 	gap: 0.5rem;
 	align-items: center;
@@ -210,6 +211,9 @@ input:where([type="checkbox"][role="switch"]) {
 	color: inherit;
 	padding: 0;
 	transition: 0.4s;
+	&:hover {
+		cursor: pointer;
+	}
 }
 input:where([type="checkbox"][role="switch"])::before {
 	content: "";
@@ -228,10 +232,21 @@ input:where([type="checkbox"][role="switch"])::before {
 }
 input:where([type="checkbox"][role="switch"]):checked {
 	background-color: var(--accent-color);
-	transition: 0.4s;
 }
 input:where([type="checkbox"][role="switch"]):checked::before {
 	left: 2rem;
+}
+.edit-controls {
+	background: var(--lighter-background);
+	padding: 1.5rem;
+	position: absolute;
+	right: 0.5rem;
+	top: 0.5rem;
+	height: 1.25rem;
+	display: flex;
+	border-radius: 1rem;
+	align-items: center;
+	gap: 0.5rem;
 }
 .error-message {
 	background: rgb(255, 48, 48);
@@ -242,10 +257,7 @@ input:where([type="checkbox"][role="switch"]):checked::before {
 	border-radius: 0.5rem;
 }
 .remove-button {
-	position: absolute;
 	display: flex;
-	top: 0.25rem;
-	right: 0.25rem;
 	width: 1rem;
 	height: 1rem;
 	background: rgb(255, 48, 48);
@@ -254,6 +266,9 @@ input:where([type="checkbox"][role="switch"]):checked::before {
 	align-items: center;
 	justify-content: center;
 	border: 1px white solid;
+	&:hover {
+		color: white !important;
+	}
 }
 #category-counter {
 	display: flex;
@@ -295,6 +310,9 @@ input:where([type="checkbox"][role="switch"]):checked::before {
 	}
 }
 @media only screen and (min-width: 768px) {
+	main {
+		min-width: 768px;
+	}
 	#projects {
 		article {
 			flex-direction: row;
